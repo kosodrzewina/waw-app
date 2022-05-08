@@ -13,9 +13,6 @@ import com.example.wawapp.ui.theme.WawAppTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        EventFetcher.fetch(Type.BEMOWO, Type.WOLA, Type.MEETINGS)
-
         setContent {
             WawAppTheme {
                 Surface(

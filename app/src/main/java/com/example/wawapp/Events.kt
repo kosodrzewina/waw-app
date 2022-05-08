@@ -3,10 +3,11 @@ package com.example.wawapp
 import androidx.compose.runtime.mutableStateListOf
 
 object Events {
-    val events = mutableStateListOf<Event>()
+    private val EVENTS = mutableStateListOf<Event>()
+    val events: List<Event> get() = EVENTS
 
     init {
-        events.addAll(
+        EVENTS.addAll(
             listOf(
                 Event(
                     title = "Test event",
@@ -17,5 +18,13 @@ object Events {
                 )
             )
         )
+    }
+
+    fun updateEvents(newEvents: List<Event>) {
+        EVENTS.addAll(newEvents.filter { fetchedEvent ->
+            EVENTS.all { event ->
+                event.guid != fetchedEvent.guid
+            }
+        })
     }
 }
