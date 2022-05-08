@@ -10,8 +10,9 @@ object Events {
             listOf(
                 Event(
                     title = "Test event",
-                    descriptionHtml = "Test description",
+                    description = "Test description",
                     link = "test link",
+                    type = "test type",
                     guid = "test guid"
                 )
             )
