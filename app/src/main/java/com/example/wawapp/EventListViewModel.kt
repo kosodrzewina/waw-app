@@ -20,7 +20,7 @@ class EventListViewModel : ViewModel() {
         viewModelScope.launch {
             _isRefreshing.emit(true)
             withContext(CoroutineScope(IO).coroutineContext) {
-                EventFetcher.fetch(*Type.values())
+                EventFetcher.fetch(*EventType.values())
                 _isRefreshing.emit(false)
             }
         }

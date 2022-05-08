@@ -13,7 +13,7 @@ object EventFetcher {
     private const val URL_BY_GUID = "$BASE_URL/by-guid?guid="
 
     @OptIn(DelicateCoroutinesApi::class)
-    suspend fun fetch(vararg types: Type) {
+    suspend fun fetch(vararg types: EventType) {
         withContext(IO) {
             val response = URL("$URL_BY_TYPE${
                 types.joinToString("&eventTypes=") { it.suffix }

@@ -1,6 +1,6 @@
 package com.example.wawapp
 
-enum class Type(val suffix: String) {
+enum class EventType(val suffix: String) {
     TODAY("Today"),
     LATEST("Latest"),
     FOR_KIDS("ForKids"),
