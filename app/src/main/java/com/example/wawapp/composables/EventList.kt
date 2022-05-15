@@ -7,9 +7,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.material.ScaffoldState
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -20,9 +19,17 @@ import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 
 @Composable
-fun EventList(events: List<Event>, modifier: Modifier = Modifier) {
+fun EventList(events: List<Event>, scaffoldState: ScaffoldState, modifier: Modifier = Modifier) {
     val viewModel: EventListViewModel = viewModel()
     val isRefreshing by viewModel.isRefreshing.collectAsState()
+    val scope = rememberCoroutineScope()
+    
+    if (viewModel.errorHolder.isError) {
+        LaunchedEffect(viewModel.errorHolder) {
+            scaffoldState.snackbarHostState.showSnackbar(viewModel.errorHolder.message)
+            viewModel.errorHolder.isError = false
+        }
+    }
 
     SwipeRefresh(
         state = rememberSwipeRefreshState(isRefreshing),

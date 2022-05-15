@@ -15,6 +15,7 @@ import com.example.wawapp.composables.EventList
 
 @Composable
 fun EventsScreen(events: List<Event>) {
+    val scaffoldState = rememberScaffoldState()
     var isExpanded by remember {
         mutableStateOf(false)
     }
@@ -26,6 +27,7 @@ fun EventsScreen(events: List<Event>) {
     }
 
     Scaffold(
+        scaffoldState = scaffoldState,
         topBar = {
             TopAppBar(
                 title = { Text(text = "Events") },
@@ -82,6 +84,7 @@ fun EventsScreen(events: List<Event>) {
         }
         EventList(
             events = eventsToDisplay,
+            scaffoldState = scaffoldState,
             modifier = Modifier
                 .padding(top = it.calculateTopPadding())
                 .fillMaxHeight()
