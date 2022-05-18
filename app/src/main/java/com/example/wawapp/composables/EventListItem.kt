@@ -1,5 +1,7 @@
 package com.example.wawapp.composables
 
+import android.content.res.Resources
+import android.widget.TextView
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -18,18 +20,21 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.viewinterop.AndroidView
+import androidx.core.text.HtmlCompat
 import com.example.wawapp.Event
+import com.example.wawapp.HtmlImageGetter
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun EventListItem(event: Event, onClick: () -> Unit) {
+fun EventListItem(event: Event, onClick: () -> Unit, resources: Resources) {
     var isFavourite by remember {
         mutableStateOf(false)
     }
 
     Card(shape = RoundedCornerShape(16.dp), elevation = 8.dp, onClick = onClick) {
-        Column(modifier = Modifier.fillMaxWidth()) {
-            Row {
+        Row(modifier = Modifier.fillMaxWidth()) {
+            Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = event.title,
                     fontSize = 18.sp,
@@ -37,21 +42,34 @@ fun EventListItem(event: Event, onClick: () -> Unit) {
                     textAlign = TextAlign.Start,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
-                    modifier = Modifier
-                        .padding(all = 16.dp)
-                        .weight(1f)
+                    modifier = Modifier.padding(all = 16.dp)
                 )
-                Box(modifier = Modifier.padding(top = 16.dp, end = 16.dp, bottom = 16.dp)) {
-                    Icon(
-                        imageVector = if (isFavourite) Icons.Default.Favorite
-                        else Icons.Default.FavoriteBorder,
-                        contentDescription = null,
-                        tint = Color.Red,
-                        modifier = Modifier.clickable {
-                            isFavourite = !isFavourite
-                        }
-                    )
-                }
+                AndroidView(
+                    factory = { context -> TextView(context) },
+                    update = { textView ->
+                        val htmlImageGetter = HtmlImageGetter(resources, textView)
+
+                        textView.text =
+                            HtmlCompat.fromHtml(
+                                event.description,
+                                HtmlCompat.FROM_HTML_MODE_COMPACT,
+                                htmlImageGetter,
+                                null
+                            )
+                    },
+                    modifier = Modifier.padding(start = 16.dp, bottom = 16.dp, end = 16.dp)
+                )
+            }
+            Box(modifier = Modifier.padding(top = 16.dp, end = 16.dp, bottom = 16.dp)) {
+                Icon(
+                    imageVector = if (isFavourite) Icons.Default.Favorite
+                    else Icons.Default.FavoriteBorder,
+                    contentDescription = null,
+                    tint = Color.Red,
+                    modifier = Modifier.clickable {
+                        isFavourite = !isFavourite
+                    }
+                )
             }
         }
     }

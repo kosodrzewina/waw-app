@@ -8,6 +8,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.wawapp.Event
@@ -77,7 +78,7 @@ fun EventsScreen(events: List<Event>, navController: NavController) {
                     }
                 }
             )
-        },
+        }
     ) {
         if (eventsToDisplay.isEmpty() && events.isNotEmpty()) {
             // TODO: Some cool screen
@@ -87,6 +88,7 @@ fun EventsScreen(events: List<Event>, navController: NavController) {
             events = eventsToDisplay,
             scaffoldState = scaffoldState,
             navController = navController,
+            resources = LocalContext.current.resources,
             modifier = Modifier
                 .padding(top = it.calculateTopPadding())
                 .fillMaxHeight()
