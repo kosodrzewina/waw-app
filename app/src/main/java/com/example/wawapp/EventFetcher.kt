@@ -21,7 +21,7 @@ object EventFetcher {
             val eventListType = object : TypeToken<List<Event>>() {}.type
             val fetchedEvents = Gson().fromJson<List<Event>>(response, eventListType)
 
-            Events.updateEvents(fetchedEvents)
+            EventStore.updateEvents(fetchedEvents)
         }
     }
 

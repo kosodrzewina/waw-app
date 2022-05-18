@@ -2,7 +2,7 @@ package com.example.wawapp
 
 import androidx.compose.runtime.mutableStateListOf
 
-object Events {
+object EventStore {
     private val EVENTS = mutableStateListOf<Event>()
     val events: List<Event> get() = EVENTS
 

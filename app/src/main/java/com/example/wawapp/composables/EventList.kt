@@ -16,8 +16,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.wawapp.Event
 import com.example.wawapp.EventListViewModel
-import com.example.wawapp.Events
-import com.example.wawapp.navigation.BottomNavBarItem
+import com.example.wawapp.EventStore
 import com.example.wawapp.navigation.Screen
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
@@ -45,7 +44,7 @@ fun EventList(
         state = rememberSwipeRefreshState(isRefreshing),
         onRefresh = { viewModel.refresh() }
     ) {
-        if (Events.events.isEmpty()) {
+        if (EventStore.events.isEmpty()) {
             EmptyView(
                 modifier = Modifier
                     .fillMaxSize()

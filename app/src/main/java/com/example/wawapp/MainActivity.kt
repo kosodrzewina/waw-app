@@ -32,9 +32,9 @@ class MainActivity : ComponentActivity() {
                     startDestination = EVENTS_ROUTE,
                     modifier = Modifier.padding(paddingValues = it)
                 ) {
-                    composable(EVENTS_ROUTE) { EventsScreen(events = Events.events, navController) }
+                    composable(EVENTS_ROUTE) { EventsScreen(events = EventStore.events, navController) }
                     composable(MAP_ROUTE) { MapScreen() }
-                    composable(EVENT_PREVIEW_ROUTE) { EventPreviewScreen(event = Events.events[0]) }
+                    composable(EVENT_PREVIEW_ROUTE) { EventPreviewScreen(event = EventStore.events[0]) }
                 }
             }
         }
