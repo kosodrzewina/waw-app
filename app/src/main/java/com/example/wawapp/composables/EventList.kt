@@ -12,14 +12,22 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.wawapp.Event
 import com.example.wawapp.EventListViewModel
 import com.example.wawapp.Events
+import com.example.wawapp.navigation.BottomNavBarItem
+import com.example.wawapp.navigation.Screen
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 
 @Composable
-fun EventList(events: List<Event>, scaffoldState: ScaffoldState, modifier: Modifier = Modifier) {
+fun EventList(
+    events: List<Event>,
+    scaffoldState: ScaffoldState,
+    navController: NavController,
+    modifier: Modifier = Modifier
+) {
     val viewModel: EventListViewModel = viewModel()
     val isRefreshing by viewModel.isRefreshing.collectAsState()
     val scope = rememberCoroutineScope()
@@ -47,8 +55,13 @@ fun EventList(events: List<Event>, scaffoldState: ScaffoldState, modifier: Modif
                 verticalArrangement = Arrangement.spacedBy(12.dp),
                 modifier = modifier
             ) {
-                items(items = events) {
-                    EventListItem(event = it, onClick = {})
+                items(items = events) { event ->
+                    EventListItem(
+                        event = event,
+                        onClick = {
+                            navController.navigate(Screen.EventPreviewScreen.navRoute)
+                        }
+                    )
                 }
             }
         }

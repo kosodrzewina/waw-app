@@ -12,12 +12,12 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 
 @Composable
 fun BottomNavBar(navController: NavController) {
-    val navItems = listOf(NavItem.EventsScreen, NavItem.MapScreen)
+    val bottomNavBarItems = listOf(BottomNavBarItem.EventsScreen, BottomNavBarItem.MapScreen)
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
     BottomNavigation {
-        navItems.forEach {
+        bottomNavBarItems.forEach {
             BottomNavigationItem(
                 icon = { Icon(imageVector = it.icon, contentDescription = null) },
                 label = { Text(text = it.title) },

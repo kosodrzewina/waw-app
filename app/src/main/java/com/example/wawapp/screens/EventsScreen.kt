@@ -9,12 +9,13 @@ import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.wawapp.Event
 import com.example.wawapp.EventType
 import com.example.wawapp.composables.EventList
 
 @Composable
-fun EventsScreen(events: List<Event>) {
+fun EventsScreen(events: List<Event>, navController: NavController) {
     val scaffoldState = rememberScaffoldState()
     var isExpanded by remember {
         mutableStateOf(false)
@@ -85,6 +86,7 @@ fun EventsScreen(events: List<Event>) {
         EventList(
             events = eventsToDisplay,
             scaffoldState = scaffoldState,
+            navController = navController,
             modifier = Modifier
                 .padding(top = it.calculateTopPadding())
                 .fillMaxHeight()
