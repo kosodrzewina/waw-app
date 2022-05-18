@@ -23,7 +23,7 @@ fun EventList(events: List<Event>, scaffoldState: ScaffoldState, modifier: Modif
     val viewModel: EventListViewModel = viewModel()
     val isRefreshing by viewModel.isRefreshing.collectAsState()
     val scope = rememberCoroutineScope()
-    
+
     if (viewModel.errorHolder.isError) {
         LaunchedEffect(viewModel.errorHolder) {
             scaffoldState.snackbarHostState.showSnackbar(viewModel.errorHolder.message)
@@ -48,10 +48,7 @@ fun EventList(events: List<Event>, scaffoldState: ScaffoldState, modifier: Modif
                 modifier = modifier
             ) {
                 items(items = events) {
-                    EventListItem(
-                        event = it
-                        // TODO: onClick -> display event details, onLongClick -> add to favourites
-                    )
+                    EventListItem(event = it, onClick = {})
                 }
             }
         }

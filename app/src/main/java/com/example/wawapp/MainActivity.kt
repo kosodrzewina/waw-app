@@ -15,8 +15,6 @@ import com.example.wawapp.navigation.MAP_ROUTE
 import com.example.wawapp.screens.EventsScreen
 import com.example.wawapp.screens.MapScreen
 import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     @OptIn(DelicateCoroutinesApi::class)
