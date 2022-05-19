@@ -8,7 +8,7 @@ import kotlinx.coroutines.withContext
 import java.net.URL
 
 object EventFetcher {
-    private const val BASE_URL = "http://192.168.195.1:7208/api/events"
+    private const val BASE_URL = "http://10.0.2.2:5001/api/events"
     private const val URL_BY_TYPE = "$BASE_URL/by-types?eventTypes="
     private const val URL_BY_GUID = "$BASE_URL/by-guid?guid="
 
