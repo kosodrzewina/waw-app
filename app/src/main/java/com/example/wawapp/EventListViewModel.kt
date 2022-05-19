@@ -33,6 +33,9 @@ class EventListViewModel : ViewModel() {
                         message = "An error occurred when fetching events!"
                     }
                 } catch (e: Exception) {
+                    val error = e.toString()
+                    println(error)
+
                     errorHolder.apply {
                         isError = true
                         message = "Unknown error occurred!"

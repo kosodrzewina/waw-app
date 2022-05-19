@@ -20,6 +20,8 @@ import com.example.wawapp.EventStore
 import com.example.wawapp.navigation.Screen
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 
 @Composable
 fun EventList(
@@ -61,7 +63,11 @@ fun EventList(
                         event = event,
                         resources = resources,
                         onClick = {
-                            navController.navigate(Screen.EventPreviewScreen.navRoute)
+                            navController.navigate(
+                                Screen.EventPreviewScreen.routeWithArgs(
+                                    URLEncoder.encode(event.guid, StandardCharsets.UTF_8.toString())
+                                )
+                            )
                         }
                     )
                 }
