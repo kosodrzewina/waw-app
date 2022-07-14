@@ -12,11 +12,14 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.rememberCameraPositionState
 
+const val WARSAW_LAT = 52.2297
+const val WARSAW_LONG = 21.0122
+
 @Composable
 fun MapScreen(viewModel: MapsViewModel = viewModel()) {
     val scaffoldState = rememberScaffoldState()
     val cameraPositionState = rememberCameraPositionState {
-        position = CameraPosition.fromLatLngZoom(LatLng(1.35, 103.87), 11f)
+        position = CameraPosition.fromLatLngZoom(LatLng(WARSAW_LAT, WARSAW_LONG), 11f)
     }
 
     Scaffold(scaffoldState = scaffoldState) {
