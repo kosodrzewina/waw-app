@@ -1,5 +1,6 @@
 package com.example.wawapp.navigation
 
+import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -15,7 +16,7 @@ import java.net.URLDecoder
 import java.nio.charset.StandardCharsets
 
 @Composable
-fun NavGraph(navController: NavHostController, modifier: Modifier = Modifier) {
+fun NavGraph(navController: NavHostController, context: Context, modifier: Modifier = Modifier) {
     NavHost(
         navController = navController, startDestination = EVENTS_ROUTE, modifier = modifier
     ) {
@@ -25,7 +26,7 @@ fun NavGraph(navController: NavHostController, modifier: Modifier = Modifier) {
                 navController
             )
         }
-        composable(MAP_ROUTE) { MapScreen() }
+        composable(MAP_ROUTE) { MapScreen(context) }
         composable(
             route = "$EVENT_PREVIEW_ROUTE/{encodedGuid}",
             arguments = listOf(
