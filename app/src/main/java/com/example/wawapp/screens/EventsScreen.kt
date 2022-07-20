@@ -12,9 +12,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.wawapp.composables.EventList
-import com.example.wawapp.event.store.Event
-import com.example.wawapp.event.store.EventType
+import com.example.wawapp.event.Event
+import com.example.wawapp.event.EventType
+import com.example.wawapp.screens.events.EventList
 
 @Composable
 fun EventsScreen(events: List<Event>, context: Context, navController: NavController) {

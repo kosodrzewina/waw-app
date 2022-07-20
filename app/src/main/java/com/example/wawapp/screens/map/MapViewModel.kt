@@ -1,14 +1,10 @@
-package com.example.wawapp
+package com.example.wawapp.screens.map
 
-import android.content.Context
-import android.location.Address
-import android.location.Geocoder
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import com.google.android.gms.maps.model.LatLng
-import java.util.*
+import com.example.wawapp.screens.map.MapState
 
 class MapViewModel : ViewModel() {
     var state by mutableStateOf(MapState())

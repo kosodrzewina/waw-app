@@ -1,4 +1,4 @@
-package com.example.wawapp.event.store
+package com.example.wawapp.event
 
 import com.google.android.gms.maps.model.LatLng
 

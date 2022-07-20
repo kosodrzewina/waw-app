@@ -12,7 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.navigation.NavController
-import com.example.wawapp.event.store.Event
+import com.example.wawapp.event.Event
 
 @Composable
 fun EventPreviewScreen(event: Event, navController: NavController) {

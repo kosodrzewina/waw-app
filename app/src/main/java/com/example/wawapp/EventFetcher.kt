@@ -3,10 +3,10 @@ package com.example.wawapp
 import android.content.Context
 import android.location.Address
 import android.location.Geocoder
-import com.example.wawapp.event.store.Event
-import com.example.wawapp.event.store.EventDto
-import com.example.wawapp.event.store.EventStore
-import com.example.wawapp.event.store.EventType
+import com.example.wawapp.event.Event
+import com.example.wawapp.event.EventDto
+import com.example.wawapp.event.EventStore
+import com.example.wawapp.event.EventType
 import com.google.android.gms.maps.model.LatLng
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken

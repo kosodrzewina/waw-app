@@ -1,4 +1,4 @@
-package com.example.wawapp
+package com.example.wawapp.screens.events
 
 import android.content.Context
 import androidx.compose.runtime.getValue
@@ -6,7 +6,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.wawapp.event.store.EventType
+import com.example.wawapp.ErrorHolder
+import com.example.wawapp.EventFetcher
+import com.example.wawapp.event.EventType
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.MutableStateFlow

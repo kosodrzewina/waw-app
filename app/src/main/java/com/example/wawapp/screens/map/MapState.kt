@@ -1,7 +1,7 @@
-package com.example.wawapp
+package com.example.wawapp.screens.map
 
-import com.example.wawapp.event.store.Event
-import com.example.wawapp.event.store.EventStore
+import com.example.wawapp.event.Event
+import com.example.wawapp.event.EventStore
 import com.google.maps.android.compose.MapProperties
 
 data class MapState(

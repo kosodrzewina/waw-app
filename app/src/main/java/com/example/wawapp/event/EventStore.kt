@@ -1,4 +1,4 @@
-package com.example.wawapp.event.store
+package com.example.wawapp.event
 
 import androidx.compose.runtime.mutableStateListOf
 

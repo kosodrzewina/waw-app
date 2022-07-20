@@ -1,4 +1,4 @@
-package com.example.wawapp.event.store
+package com.example.wawapp.event
 
 data class EventDto(
     val title: String,

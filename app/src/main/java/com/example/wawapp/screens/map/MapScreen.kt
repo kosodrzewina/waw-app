@@ -1,4 +1,4 @@
-package com.example.wawapp.screens
+package com.example.wawapp.screens.map
 
 import android.content.Context
 import androidx.compose.foundation.layout.padding
@@ -7,7 +7,6 @@ import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.wawapp.MapViewModel
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.GoogleMap
