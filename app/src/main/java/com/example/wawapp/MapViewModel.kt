@@ -12,17 +12,4 @@ import java.util.*
 
 class MapViewModel : ViewModel() {
     var state by mutableStateOf(MapState())
-
-    fun getLocationFromAddress(context: Context, address: String): LatLng? {
-        val geocoder = Geocoder(context, Locale.getDefault())
-        val addresses: MutableList<Address> = geocoder.getFromLocationName(address, 1)
-
-        if (addresses.isEmpty()) {
-            return null
-        }
-
-        val location = addresses[0]
-
-        return LatLng(location.latitude, location.longitude)
-    }
 }

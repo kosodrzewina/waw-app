@@ -1,5 +1,6 @@
 package com.example.wawapp.composables
 
+import android.content.Context
 import android.content.res.Resources
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -14,9 +15,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.example.wawapp.Event
 import com.example.wawapp.EventListViewModel
-import com.example.wawapp.EventStore
+import com.example.wawapp.event.store.Event
+import com.example.wawapp.event.store.EventStore
 import com.example.wawapp.navigation.Screen
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
@@ -29,6 +30,7 @@ fun EventList(
     scaffoldState: ScaffoldState,
     navController: NavController,
     resources: Resources,
+    context: Context,
     modifier: Modifier = Modifier
 ) {
     val viewModel: EventListViewModel = viewModel()
@@ -44,7 +46,7 @@ fun EventList(
 
     SwipeRefresh(
         state = rememberSwipeRefreshState(isRefreshing),
-        onRefresh = { viewModel.refresh() }
+        onRefresh = { viewModel.refresh(context) }
     ) {
         if (EventStore.events.isEmpty()) {
             EmptyView(

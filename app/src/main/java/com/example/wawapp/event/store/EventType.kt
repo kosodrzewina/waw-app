@@ -1,4 +1,4 @@
-package com.example.wawapp
+package com.example.wawapp.event.store
 
 enum class EventType(val suffix: String) {
     TODAY("Today"),

@@ -8,7 +8,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.wawapp.EventStore
+import com.example.wawapp.event.store.EventStore
 import com.example.wawapp.screens.EventPreviewScreen
 import com.example.wawapp.screens.EventsScreen
 import com.example.wawapp.screens.MapScreen
@@ -23,7 +23,8 @@ fun NavGraph(navController: NavHostController, context: Context, modifier: Modif
         composable(EVENTS_ROUTE) {
             EventsScreen(
                 events = EventStore.events,
-                navController
+                context = context,
+                navController = navController
             )
         }
         composable(MAP_ROUTE) { MapScreen(context) }

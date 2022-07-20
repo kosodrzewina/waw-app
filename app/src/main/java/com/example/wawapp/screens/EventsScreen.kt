@@ -1,5 +1,6 @@
 package com.example.wawapp.screens
 
+import android.content.Context
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
@@ -11,12 +12,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.wawapp.Event
-import com.example.wawapp.EventType
 import com.example.wawapp.composables.EventList
+import com.example.wawapp.event.store.Event
+import com.example.wawapp.event.store.EventType
 
 @Composable
-fun EventsScreen(events: List<Event>, navController: NavController) {
+fun EventsScreen(events: List<Event>, context: Context, navController: NavController) {
     val scaffoldState = rememberScaffoldState()
     var isExpanded by remember {
         mutableStateOf(false)
@@ -89,6 +90,7 @@ fun EventsScreen(events: List<Event>, navController: NavController) {
             scaffoldState = scaffoldState,
             navController = navController,
             resources = LocalContext.current.resources,
+            context = context,
             modifier = Modifier
                 .padding(top = it.calculateTopPadding())
                 .fillMaxHeight()

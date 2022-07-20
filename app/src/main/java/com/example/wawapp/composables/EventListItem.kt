@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.text.HtmlCompat
-import com.example.wawapp.Event
+import com.example.wawapp.event.store.Event
 import com.example.wawapp.HtmlImageGetter
 
 @OptIn(ExperimentalMaterialApi::class)
