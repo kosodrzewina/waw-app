@@ -36,7 +36,7 @@ fun EventListItem(event: Event, onClick: () -> Unit, resources: Resources) {
         Row(modifier = Modifier.fillMaxWidth()) {
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = event.title,
+                    text = event.eventTitle,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Start,

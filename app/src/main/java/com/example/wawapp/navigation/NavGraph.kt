@@ -11,7 +11,7 @@ import androidx.navigation.navArgument
 import com.example.wawapp.event.EventStore
 import com.example.wawapp.screens.EventPreviewScreen
 import com.example.wawapp.screens.EventsScreen
-import com.example.wawapp.screens.MapScreen
+import com.example.wawapp.screens.map.MapScreen
 import java.net.URLDecoder
 import java.nio.charset.StandardCharsets
 

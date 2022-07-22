@@ -29,7 +29,7 @@ fun EventPreviewScreen(event: Event, navController: NavController) {
         }
     ) {
         Column(modifier = Modifier.padding(it)) {
-            Text(text = event.title)
+            Text(text = event.eventTitle)
             AndroidView(factory = { context ->
                 WebView(context).apply {
                     layoutParams = ViewGroup.LayoutParams(

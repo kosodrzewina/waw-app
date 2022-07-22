@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.example.wawapp.composables.EmptyView
+import com.example.wawapp.EmptyView
 import com.example.wawapp.composables.EventListItem
 import com.example.wawapp.event.Event
 import com.example.wawapp.event.EventStore

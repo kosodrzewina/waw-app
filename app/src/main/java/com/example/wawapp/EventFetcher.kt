@@ -3,6 +3,8 @@ package com.example.wawapp
 import android.content.Context
 import android.location.Address
 import android.location.Geocoder
+import android.util.Log
+import androidx.compose.runtime.mutableStateOf
 import com.example.wawapp.event.Event
 import com.example.wawapp.event.EventDto
 import com.example.wawapp.event.EventStore
@@ -22,38 +24,36 @@ object EventFetcher {
 
     suspend fun fetch(context: Context, vararg types: EventType) {
         withContext(IO) {
+            Log.i(javaClass.name, "Fetching events...")
             val response = URL("$URL_BY_TYPE${
                 types.joinToString("&eventTypes=") { it.suffix }
             }").readText()
             val eventListType = object : TypeToken<List<EventDto>>() {}.type
             val fetchedEvents = Gson().fromJson<List<EventDto>>(response, eventListType)
-
-
-            EventStore.updateEvents(getEventsWithLocation(fetchedEvents, context))
-        }
-    }
-
-    private fun getEventsWithLocation(eventsDto: List<EventDto>, context: Context): List<Event> {
-        val events = mutableListOf<Event>()
-
-        eventsDto.forEach {
-            val location = getLocationFromAddress(it.address, context)
-
-            events.add(
+            val events = fetchedEvents.map {
                 Event(
-                    title = it.title,
+                    eventTitle = it.title,
                     description = it.description,
                     link = it.link,
                     guid = it.guid,
                     address = it.address,
-                    location = location,
+                    location = mutableStateOf(null),
                     type = it.type
                 )
-            )
-        }
+            }
 
-        return events
+            EventStore.updateEvents(events)
+            assignLocationToEvents(EventStore.events, context)
+        }
     }
+
+    private fun assignLocationToEvents(events: List<Event>, context: Context) {
+        events.forEachIndexed { i, event ->
+            Log.i(javaClass.name, "$i/${events.size} Getting location for ${event.address}...")
+            event.location.value = getLocationFromAddress(event.address, context)
+        }
+    }
+
 
     private fun getLocationFromAddress(address: String, context: Context): LatLng? {
         val geocoder = Geocoder(context, Locale.getDefault())
