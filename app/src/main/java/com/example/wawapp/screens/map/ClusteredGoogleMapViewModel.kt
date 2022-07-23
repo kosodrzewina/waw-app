@@ -20,10 +20,16 @@ class ClusteredGoogleMapViewModel : ViewModel() {
     lateinit var clusterManager: MutableState<ClusterManager<Event>?>
     val properties: MapProperties = MapProperties()
 
-    fun setUpClusters(context: Context, googleMap: GoogleMap, expandBottomSheet: () -> Unit) {
+    fun setUpClusters(
+        context: Context,
+        googleMap: GoogleMap,
+        selectedEvent: MutableState<Event?>,
+        expandBottomSheet: () -> Unit
+    ) {
         clusterManager = mutableStateOf(ClusterManager<Event>(context, googleMap))
         clusterManager.value?.addItems(events)
         clusterManager.value?.setOnClusterItemInfoWindowClickListener {
+            selectedEvent.value = it
             expandBottomSheet()
         }
     }

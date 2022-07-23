@@ -8,11 +8,16 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.wawapp.event.Event
+
+private val selectedEvent: MutableState<Event?> = mutableStateOf(null)
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -39,10 +44,20 @@ fun MapScreen(context: Context) {
                     .fillMaxWidth()
                     .height(LocalConfiguration.current.screenHeightDp.dp - 200.dp)
             ) {
-                Text(text = "TEST", fontSize = 36.sp, modifier = Modifier.padding(8.dp))
+                selectedEvent.value?.let {
+                    Text(
+                        text = it.title,
+                        fontSize = 36.sp,
+                        modifier = Modifier.padding(8.dp)
+                    )
+                }
             }
         }
     ) {
-        ClusteredGoogleMap(context = context, sheetState = sheetState)
+        ClusteredGoogleMap(
+            context = context,
+            sheetState = sheetState,
+            selectedEvent = selectedEvent
+        )
     }
 }

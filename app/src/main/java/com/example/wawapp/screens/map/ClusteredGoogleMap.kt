@@ -5,9 +5,11 @@ import androidx.compose.material.BottomSheetState
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.wawapp.event.Event
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.MapEffect
@@ -20,6 +22,7 @@ import kotlinx.coroutines.launch
 fun ClusteredGoogleMap(
     context: Context,
     sheetState: BottomSheetState,
+    selectedEvent: MutableState<Event?>,
     modifier: Modifier = Modifier,
     viewModel: ClusteredGoogleMapViewModel = viewModel()
 ) {
@@ -34,7 +37,7 @@ fun ClusteredGoogleMap(
         modifier = modifier
     ) {
         MapEffect { googleMap ->
-            viewModel.setUpClusters(context, googleMap) {
+            viewModel.setUpClusters(context, googleMap, selectedEvent) {
                 scope.launch {
                     sheetState.expand()
                 }
