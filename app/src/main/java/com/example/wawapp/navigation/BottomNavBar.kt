@@ -12,7 +12,11 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 
 @Composable
 fun BottomNavBar(navController: NavController) {
-    val bottomNavBarItems = listOf(BottomNavBarItem.EventsScreen, BottomNavBarItem.MapScreen)
+    val bottomNavBarItems = listOf(
+        BottomNavBarItem.EventsScreen,
+        BottomNavBarItem.MapScreen,
+        BottomNavBarItem.ProfileScreen
+    )
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
