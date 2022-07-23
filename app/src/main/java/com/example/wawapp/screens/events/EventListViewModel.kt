@@ -39,13 +39,6 @@ class EventListViewModel : ViewModel() {
                         isError = true
                         message = "An error occurred when fetching events!"
                     }
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                    errorHolder.apply {
-                        isError = true
-                        message =
-                            "An unexpected error occurred while getting location for an address"
-                    }
                 } catch (e: Exception) {
                     e.printStackTrace()
                     errorHolder.apply {
