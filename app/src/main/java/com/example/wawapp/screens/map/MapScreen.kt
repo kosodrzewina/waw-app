@@ -1,7 +1,6 @@
 package com.example.wawapp.screens.map
 
 import android.content.Context
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -13,11 +12,7 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.CornerRadius
-import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -49,7 +44,10 @@ fun MapScreen(context: Context) {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(LocalConfiguration.current.screenHeightDp.dp - 200.dp)
+                    .height(
+                        LocalConfiguration.current.screenHeightDp.dp -
+                                (LocalConfiguration.current.screenHeightDp.dp / 4)
+                    )
             ) {
                 selectedEvent.value?.let { event ->
                     Text(
