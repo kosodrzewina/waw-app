@@ -9,11 +9,15 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -53,10 +57,29 @@ fun MapScreen(context: Context) {
                     Text(
                         text = event.title,
                         fontSize = 24.sp,
+                        fontWeight = FontWeight.Bold,
                         maxLines = 2,
                         overflow = TextOverflow.Ellipsis,
                         modifier = Modifier.padding(16.dp)
                     )
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Icon(
+                            imageVector = Icons.Outlined.FavoriteBorder,
+                            contentDescription = null,
+                            tint = Color.Gray,
+                            modifier = Modifier
+                                .padding(start = 16.dp, end = 8.dp, bottom = 16.dp)
+                                .size(15.dp)
+                        )
+                        Text(
+                            text = "100",
+                            fontSize = 12.sp,
+                            maxLines = 2,
+                            fontWeight = FontWeight.Thin,
+                            overflow = TextOverflow.Ellipsis,
+                            modifier = Modifier.padding(end = 16.dp, bottom = 16.dp)
+                        )
+                    }
                     Box(modifier = Modifier.verticalScroll(rememberScrollState())) {
                         EventWebView(eventLink = event.link)
                     }
