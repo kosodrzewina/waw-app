@@ -45,6 +45,14 @@ fun MapScreen(context: Context) {
             }
         },
         sheetContent = {
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 10.dp)
+            ) {
+                PillDragHandler(width = 150f)
+            }
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
