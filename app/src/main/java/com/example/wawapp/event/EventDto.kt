@@ -6,5 +6,5 @@ data class EventDto(
     val link: String,
     val guid: String,
     val address: String,
-    val type: String
+    val types: List<String>
 )

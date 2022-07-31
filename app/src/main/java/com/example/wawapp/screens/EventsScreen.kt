@@ -66,7 +66,7 @@ fun EventsScreen(events: List<Event>, context: Context, navController: NavContro
                                 EventType.values().forEach { eventType ->
                                     DropdownMenuItem(onClick = {
                                         eventsToDisplay = events.filter { event ->
-                                            event.type == eventType.suffix
+                                            event.types.contains(eventType.suffix)
                                         }
                                         isExpanded = false
                                         selectedCategory = eventType.suffix

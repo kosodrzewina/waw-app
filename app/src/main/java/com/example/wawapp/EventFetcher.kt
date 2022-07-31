@@ -38,7 +38,7 @@ object EventFetcher {
                     guid = it.guid,
                     address = it.address,
                     location = mutableStateOf(null),
-                    type = it.type
+                    types = it.types
                 )
             }
 

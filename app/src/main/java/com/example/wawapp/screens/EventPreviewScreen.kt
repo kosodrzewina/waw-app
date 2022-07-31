@@ -15,7 +15,7 @@ fun EventPreviewScreen(event: Event, navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(text = "Event ${event.type}") },
+                title = { Text(text = "Event") },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null)
