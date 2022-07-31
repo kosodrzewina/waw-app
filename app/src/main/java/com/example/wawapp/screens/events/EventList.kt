@@ -36,7 +36,6 @@ fun EventList(
 ) {
     val viewModel: EventListViewModel = viewModel()
     val isRefreshing by viewModel.isRefreshing.collectAsState()
-    val scope = rememberCoroutineScope()
 
     if (viewModel.errorHolder.isError) {
         LaunchedEffect(viewModel.errorHolder) {
