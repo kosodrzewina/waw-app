@@ -31,6 +31,8 @@ private val selectedEvent: MutableState<Event?> = mutableStateOf(null)
 fun MapScreen(context: Context) {
     val sheetState = rememberBottomSheetState(initialValue = BottomSheetValue.Collapsed)
     val scaffoldState = rememberBottomSheetScaffoldState(bottomSheetState = sheetState)
+    val bottomSheetHeight = LocalConfiguration.current.screenHeightDp.dp -
+            (LocalConfiguration.current.screenHeightDp.dp / 4)
 
     BottomSheetScaffold(
         scaffoldState = scaffoldState,
@@ -56,10 +58,7 @@ fun MapScreen(context: Context) {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(
-                        LocalConfiguration.current.screenHeightDp.dp -
-                                (LocalConfiguration.current.screenHeightDp.dp / 4)
-                    )
+                    .height(bottomSheetHeight)
             ) {
                 selectedEvent.value?.let { event ->
                     Text(

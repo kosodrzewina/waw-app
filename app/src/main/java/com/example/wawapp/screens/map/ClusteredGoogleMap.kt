@@ -3,13 +3,11 @@ package com.example.wawapp.screens.map
 import android.content.Context
 import androidx.compose.material.BottomSheetState
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.wawapp.event.Event
+import com.example.wawapp.screens.map.eventsdialog.EventsDialog
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.MapEffect
@@ -26,22 +24,48 @@ fun ClusteredGoogleMap(
     modifier: Modifier = Modifier,
     viewModel: ClusteredGoogleMapViewModel = viewModel()
 ) {
+    var isDialogOpen by remember {
+        mutableStateOf(false)
+    }
     val cameraPositionState = rememberCameraPositionState {
         position = CameraPosition.fromLatLngZoom(viewModel.warsawLocation, 11f)
     }
     val scope = rememberCoroutineScope()
 
+    if (isDialogOpen) {
+        EventsDialog(
+            viewModel.selectedClusterEvents.value,
+            selectedEvent = selectedEvent,
+            onDismissRequest = {
+                isDialogOpen = false
+            }
+        ) {
+            scope.launch {
+                sheetState.expand()
+            }
+        }
+    }
     GoogleMap(
         cameraPositionState = cameraPositionState,
         properties = viewModel.properties,
         modifier = modifier
     ) {
         MapEffect { googleMap ->
-            viewModel.setUpClusters(context, googleMap, selectedEvent) {
-                scope.launch {
-                    sheetState.expand()
+            viewModel.setUpClusters(
+                context,
+                googleMap,
+                selectedEvent,
+                expandBottomSheet = {
+                    scope.launch {
+                        sheetState.expand()
+                    }
+                },
+                onClusterClickListener = {
+                    viewModel.selectedClusterEvents.value = it.items.toMutableList()
+                    isDialogOpen = true
+                    true
                 }
-            }
+            )
         }
 
         LaunchedEffect(key1 = cameraPositionState.isMoving) {

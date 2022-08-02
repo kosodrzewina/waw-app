@@ -16,21 +16,27 @@ const val WARSAW_LONG = 21.0122
 
 class ClusteredGoogleMapViewModel : ViewModel() {
     private val events: List<Event> = EventStore.events
-    val warsawLocation = LatLng(WARSAW_LAT, WARSAW_LONG)
+
     lateinit var clusterManager: MutableState<ClusterManager<Event>?>
+    val warsawLocation = LatLng(WARSAW_LAT, WARSAW_LONG)
     val properties: MapProperties = MapProperties()
+    val selectedClusterEvents: MutableState<List<Event>> = mutableStateOf(arrayListOf())
 
     fun setUpClusters(
         context: Context,
         googleMap: GoogleMap,
         selectedEvent: MutableState<Event?>,
-        expandBottomSheet: () -> Unit
+        expandBottomSheet: () -> Unit,
+        onClusterClickListener: ClusterManager.OnClusterClickListener<Event>
     ) {
         clusterManager = mutableStateOf(ClusterManager<Event>(context, googleMap))
         clusterManager.value?.addItems(events)
+
         clusterManager.value?.setOnClusterItemInfoWindowClickListener {
             selectedEvent.value = it
             expandBottomSheet()
         }
+
+        clusterManager.value?.setOnClusterClickListener(onClusterClickListener)
     }
 }

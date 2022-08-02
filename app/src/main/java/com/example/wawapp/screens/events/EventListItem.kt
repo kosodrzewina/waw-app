@@ -1,4 +1,4 @@
-package com.example.wawapp.composables
+package com.example.wawapp.screens.events
 
 import android.content.res.Resources
 import android.widget.TextView
