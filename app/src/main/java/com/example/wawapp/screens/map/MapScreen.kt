@@ -88,7 +88,7 @@ fun MapScreen(context: Context) {
                         )
                     }
                     Box(modifier = Modifier.verticalScroll(rememberScrollState())) {
-                        EventWebView(eventLink = event.link)
+                        EventWebView(eventUrl = event.url)
                     }
                 }
             }

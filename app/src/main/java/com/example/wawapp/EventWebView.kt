@@ -8,7 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
 
 @Composable
-fun EventWebView(eventLink: String, modifier: Modifier = Modifier) {
+fun EventWebView(eventUrl: String, modifier: Modifier = Modifier) {
     AndroidView(
         factory = { context ->
             WebView(context).apply {
@@ -20,7 +20,7 @@ fun EventWebView(eventLink: String, modifier: Modifier = Modifier) {
             }
         },
         update = {
-            it.loadUrl(eventLink)
+            it.loadUrl(eventUrl)
         },
         modifier = modifier
     )

@@ -34,7 +34,7 @@ object EventFetcher {
                 Event(
                     eventTitle = it.title,
                     description = it.description,
-                    link = it.link,
+                    url = it.link,
                     guid = it.guid,
                     address = it.address,
                     location = mutableStateOf(null),

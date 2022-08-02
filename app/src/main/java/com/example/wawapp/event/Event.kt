@@ -7,7 +7,7 @@ import com.google.maps.android.clustering.ClusterItem
 class Event(
     val eventTitle: String,
     val description: String,
-    val link: String,
+    val url: String,
     val guid: String,
     val address: String,
     val location: MutableState<LatLng?>,

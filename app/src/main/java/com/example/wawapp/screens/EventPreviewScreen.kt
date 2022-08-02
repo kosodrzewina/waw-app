@@ -24,6 +24,6 @@ fun EventPreviewScreen(event: Event, navController: NavController) {
             )
         }
     ) {
-        EventWebView(eventLink = event.link, modifier = Modifier.padding(it))
+        EventWebView(eventUrl = event.url, modifier = Modifier.padding(it))
     }
 }
