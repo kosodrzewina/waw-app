@@ -17,7 +17,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.FileNotFoundException
-import java.io.IOException
 
 class EventListViewModel : ViewModel() {
     private val _isRefreshing = MutableStateFlow(false)
