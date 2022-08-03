@@ -10,7 +10,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.wawapp.event.EventStore
 import com.example.wawapp.screens.EventPreviewScreen
-import com.example.wawapp.screens.EventsScreen
+import com.example.wawapp.screens.events.EventsScreen
 import com.example.wawapp.screens.ProfileScreen
 import com.example.wawapp.screens.map.MapScreen
 import java.net.URLDecoder

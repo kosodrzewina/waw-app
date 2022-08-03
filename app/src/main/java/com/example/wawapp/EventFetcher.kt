@@ -5,10 +5,7 @@ import android.location.Address
 import android.location.Geocoder
 import android.util.Log
 import androidx.compose.runtime.mutableStateOf
-import com.example.wawapp.event.Event
-import com.example.wawapp.event.EventDto
-import com.example.wawapp.event.EventStore
-import com.example.wawapp.event.EventType
+import com.example.wawapp.event.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -38,7 +35,7 @@ object EventFetcher {
                     guid = it.guid,
                     address = it.address,
                     location = mutableStateOf(null),
-                    types = it.types
+                    types = it.types.map { stringToEventType(it) }
                 )
             }
 

@@ -11,7 +11,7 @@ class Event(
     val guid: String,
     val address: String,
     val location: MutableState<LatLng?>,
-    val types: List<String>
+    val types: List<EventType>
 ) : ClusterItem {
     override fun getPosition(): LatLng = location.value ?: LatLng(0.0, 0.0)
 
