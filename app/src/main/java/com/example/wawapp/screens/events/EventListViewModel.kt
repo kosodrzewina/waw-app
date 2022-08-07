@@ -1,14 +1,13 @@
 package com.example.wawapp.screens.events
 
-import android.content.Context
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.wawapp.ErrorHolder
-import com.example.wawapp.EventFetcher
-import com.example.wawapp.event.EventType
+import com.example.wawapp.events.EventFetcher
+import com.example.wawapp.events.EventType
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -25,13 +24,13 @@ class EventListViewModel : ViewModel() {
     val isRefreshing: StateFlow<Boolean>
         get() = _isRefreshing.asStateFlow()
 
-    fun refresh(context: Context) {
+    fun refresh() {
         viewModelScope.launch {
             _isRefreshing.emit(true)
 
             withContext(CoroutineScope(IO).coroutineContext) {
                 try {
-                    EventFetcher.fetch(context, *EventType.values())
+                    EventFetcher.fetch(*EventType.values())
                 } catch (e: FileNotFoundException) {
                     e.printStackTrace()
                     errorHolder.apply {

@@ -13,8 +13,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.wawapp.event.EventType
-import com.example.wawapp.event.getDarkerColor
+import com.example.wawapp.events.EventType
+import com.example.wawapp.events.getDarkerColor
 
 @Composable
 fun EventTypesRow(selectedTypes: List<EventType>, onItemClick: (EventType) -> Unit) {

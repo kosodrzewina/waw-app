@@ -8,7 +8,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.wawapp.event.EventStore
+import com.example.wawapp.events.EventStore
 import com.example.wawapp.screens.EventPreviewScreen
 import com.example.wawapp.screens.events.EventsScreen
 import com.example.wawapp.screens.ProfileScreen

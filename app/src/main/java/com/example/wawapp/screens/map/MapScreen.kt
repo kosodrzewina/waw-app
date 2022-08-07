@@ -22,7 +22,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.wawapp.EventWebView
-import com.example.wawapp.event.Event
+import com.example.wawapp.events.Event
 
 private val selectedEvent: MutableState<Event?> = mutableStateOf(null)
 

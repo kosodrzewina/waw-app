@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import com.example.wawapp.EventWebView
-import com.example.wawapp.event.Event
+import com.example.wawapp.events.Event
 
 @Composable
 fun EventPreviewScreen(event: Event, navController: NavController) {

@@ -1,6 +1,5 @@
-package com.example.wawapp.event
+package com.example.wawapp.events
 
-import androidx.compose.runtime.MutableState
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.clustering.ClusterItem
 
@@ -10,10 +9,10 @@ class Event(
     val url: String,
     val guid: String,
     val address: String,
-    val location: MutableState<LatLng?>,
+    val location: LatLng?,
     val types: List<EventType>
 ) : ClusterItem {
-    override fun getPosition(): LatLng = location.value ?: LatLng(0.0, 0.0)
+    override fun getPosition(): LatLng = location ?: LatLng(0.0, 0.0)
 
     override fun getTitle(): String = eventTitle
 

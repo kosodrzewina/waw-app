@@ -16,7 +16,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.wawapp.event.Event
+import com.example.wawapp.events.Event
 
 @Composable
 fun EventsDialog(

@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import com.example.wawapp.event.Event
-import com.example.wawapp.event.EventStore
+import com.example.wawapp.events.Event
+import com.example.wawapp.events.EventStore
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.clustering.ClusterManager

@@ -15,7 +15,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.wawapp.event.Event
+import com.example.wawapp.events.Event
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable

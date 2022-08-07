@@ -6,7 +6,7 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.wawapp.event.Event
+import com.example.wawapp.events.Event
 import com.example.wawapp.screens.map.eventsdialog.EventsDialog
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.maps.android.compose.GoogleMap

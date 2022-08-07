@@ -3,8 +3,8 @@ package com.example.wawapp.screens.events
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import com.example.wawapp.event.Event
-import com.example.wawapp.event.EventType
+import com.example.wawapp.events.Event
+import com.example.wawapp.events.EventType
 
 class EventsScreenViewModel(val events: List<Event>) : ViewModel() {
     var eventsToDisplay = mutableStateOf(events)

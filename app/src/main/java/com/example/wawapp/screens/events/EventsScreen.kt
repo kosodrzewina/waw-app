@@ -11,7 +11,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.example.wawapp.event.Event
+import com.example.wawapp.events.Event
 
 @Composable
 fun EventsScreen(

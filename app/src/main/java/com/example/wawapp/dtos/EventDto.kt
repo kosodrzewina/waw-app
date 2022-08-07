@@ -1,4 +1,4 @@
-package com.example.wawapp.event
+package com.example.wawapp.dtos
 
 data class EventDto(
     val title: String,
@@ -6,5 +6,6 @@ data class EventDto(
     val link: String,
     val guid: String,
     val address: String,
+    val location: LocationDto?,
     val types: List<String>
 )

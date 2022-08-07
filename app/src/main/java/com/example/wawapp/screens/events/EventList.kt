@@ -16,8 +16,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.wawapp.EmptyView
-import com.example.wawapp.event.Event
-import com.example.wawapp.event.EventStore
+import com.example.wawapp.events.Event
+import com.example.wawapp.events.EventStore
 import com.example.wawapp.navigation.Screen
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
@@ -45,7 +45,7 @@ fun EventList(
 
     SwipeRefresh(
         state = rememberSwipeRefreshState(isRefreshing),
-        onRefresh = { viewModel.refresh(context) }
+        onRefresh = { viewModel.refresh() }
     ) {
         if (EventStore.events.isEmpty()) {
             EmptyView(
