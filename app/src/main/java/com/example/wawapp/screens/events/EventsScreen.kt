@@ -1,6 +1,5 @@
 package com.example.wawapp.screens.events
 
-import android.content.Context
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
@@ -17,7 +16,6 @@ import com.example.wawapp.events.Event
 
 @Composable
 fun EventsScreen(
-    context: Context,
     events: List<Event>,
     navController: NavController,
     viewModel: EventsScreenViewModel = viewModel(factory = EventsScreenViewModelFactory(events))
@@ -42,8 +40,7 @@ fun EventsScreen(
     ) {
         Column {
             EventTypesRow(
-                context,
-                viewModel.selectedTypes,
+                selectedTypes = viewModel.selectedTypes,
                 onItemClick = viewModel::applyTypeStateChange
             )
             if (viewModel.eventsToDisplay.value.isEmpty() && events.isNotEmpty()) {

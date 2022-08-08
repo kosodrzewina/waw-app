@@ -1,6 +1,5 @@
 package com.example.wawapp.navigation
 
-import android.content.Context
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
@@ -12,25 +11,26 @@ import androidx.compose.material.icons.filled.Map
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.wawapp.R
 
 @Composable
-fun BottomNavBar(context: Context, navController: NavController) {
+fun BottomNavBar(navController: NavController) {
     val bottomNavBarItems = listOf(
         BottomNavBarItem(
-            title = context.getString(R.string.events),
+            title = LocalContext.current.getString(R.string.events),
             icon = Icons.Default.LocalActivity,
             navRoute = EVENTS_ROUTE
         ),
         BottomNavBarItem(
-            title = context.getString(R.string.map),
+            title = LocalContext.current.getString(R.string.map),
             icon = Icons.Default.Map,
             navRoute = MAP_ROUTE
         ),
         BottomNavBarItem(
-            title = context.getString(R.string.profile),
+            title = LocalContext.current.getString(R.string.profile),
             icon = Icons.Default.AccountCircle,
             navRoute = PROFILE_ROUTE
         ),

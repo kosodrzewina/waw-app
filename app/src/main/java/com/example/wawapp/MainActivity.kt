@@ -22,12 +22,11 @@ class MainActivity : ComponentActivity() {
 
             Scaffold(
                 bottomBar = {
-                    BottomNavBar(this, navController = navHostController)
+                    BottomNavBar(navController = navHostController)
                 }
             ) {
                 NavGraph(
                     navController = navHostController,
-                    context = this,
                     modifier = Modifier.padding(it)
                 )
             }

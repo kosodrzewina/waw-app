@@ -1,10 +1,10 @@
 package com.example.wawapp.screens.map
 
-import android.content.Context
 import androidx.compose.material.BottomSheetState
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.wawapp.events.Event
 import com.example.wawapp.screens.map.eventsdialog.EventsDialog
@@ -18,7 +18,6 @@ import kotlinx.coroutines.launch
 @OptIn(MapsComposeExperimentalApi::class, ExperimentalMaterialApi::class)
 @Composable
 fun ClusteredGoogleMap(
-    context: Context,
     sheetState: BottomSheetState,
     selectedEvent: MutableState<Event?>,
     modifier: Modifier = Modifier,
@@ -31,6 +30,7 @@ fun ClusteredGoogleMap(
         position = CameraPosition.fromLatLngZoom(viewModel.warsawLocation, 11f)
     }
     val scope = rememberCoroutineScope()
+    val context = LocalContext.current
 
     if (isDialogOpen) {
         EventsDialog(

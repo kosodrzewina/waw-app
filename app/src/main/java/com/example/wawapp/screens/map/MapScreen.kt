@@ -1,6 +1,5 @@
 package com.example.wawapp.screens.map
 
-import android.content.Context
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -28,7 +27,7 @@ private val selectedEvent: MutableState<Event?> = mutableStateOf(null)
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun MapScreen(context: Context) {
+fun MapScreen() {
     val sheetState = rememberBottomSheetState(initialValue = BottomSheetValue.Collapsed)
     val scaffoldState = rememberBottomSheetScaffoldState(bottomSheetState = sheetState)
     val bottomSheetHeight = LocalConfiguration.current.screenHeightDp.dp -
@@ -94,10 +93,6 @@ fun MapScreen(context: Context) {
             }
         }
     ) {
-        ClusteredGoogleMap(
-            context = context,
-            sheetState = sheetState,
-            selectedEvent = selectedEvent
-        )
+        ClusteredGoogleMap(sheetState = sheetState, selectedEvent = selectedEvent)
     }
 }
