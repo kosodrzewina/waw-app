@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.wawapp.events.EventType
-import com.example.wawapp.events.getDarkerColor
+import com.example.wawapp.events.darkerColor
 
 @Composable
 fun EventTypesRow(selectedTypes: List<EventType>, onItemClick: (EventType) -> Unit) {
@@ -30,7 +30,7 @@ fun EventTypesRow(selectedTypes: List<EventType>, onItemClick: (EventType) -> Un
                     )
                 else
                     ButtonDefaults.outlinedButtonColors(
-                        contentColor = eventType.getDarkerColor()
+                        contentColor = eventType.darkerColor
                     ),
                 onClick = {
                     onItemClick(eventType)

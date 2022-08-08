@@ -6,22 +6,23 @@ import androidx.core.graphics.blue
 import androidx.core.graphics.green
 import androidx.core.graphics.red
 
-fun EventType.getDarkerColor(): Color {
-    val androidGraphicsColor = this.color.toArgb()
-    val hsv = FloatArray(3)
+val EventType.darkerColor: Color
+    get() {
+        val androidGraphicsColor = this.color.toArgb()
+        val hsv = FloatArray(3)
 
-    android.graphics.Color.RGBToHSV(
-        androidGraphicsColor.red,
-        androidGraphicsColor.green,
-        androidGraphicsColor.blue,
-        hsv
-    )
-    hsv[2] /= 2f
+        android.graphics.Color.RGBToHSV(
+            androidGraphicsColor.red,
+            androidGraphicsColor.green,
+            androidGraphicsColor.blue,
+            hsv
+        )
+        hsv[2] /= 2f
 
-    val androidGraphicsDarkerColor = android.graphics.Color.HSVToColor(hsv)
+        val androidGraphicsDarkerColor = android.graphics.Color.HSVToColor(hsv)
 
-    return Color(androidGraphicsDarkerColor)
-}
+        return Color(androidGraphicsDarkerColor)
+    }
 
 fun stringToEventType(name: String): EventType = EventType.values().first { it.suffix == name }
 
