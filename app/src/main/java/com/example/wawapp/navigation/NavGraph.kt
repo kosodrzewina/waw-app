@@ -22,7 +22,11 @@ fun NavGraph(navController: NavHostController, context: Context, modifier: Modif
         navController = navController, startDestination = EVENTS_ROUTE, modifier = modifier
     ) {
         composable(EVENTS_ROUTE) {
-            EventsScreen(events = EventStore.events, navController = navController)
+            EventsScreen(
+                context = context,
+                events = EventStore.events,
+                navController = navController
+            )
         }
 
         composable(MAP_ROUTE) { MapScreen(context) }

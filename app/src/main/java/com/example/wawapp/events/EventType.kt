@@ -1,10 +1,12 @@
 package com.example.wawapp.events
 
+import android.content.Context
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.core.graphics.blue
 import androidx.core.graphics.green
 import androidx.core.graphics.red
+import com.example.wawapp.R
 
 val EventType.darkerColor: Color
     get() {
@@ -24,47 +26,53 @@ val EventType.darkerColor: Color
         return Color(androidGraphicsDarkerColor)
     }
 
+fun EventType.getName(context: Context): String = context.getString(this.nameId)
+
 fun stringToEventType(name: String): EventType = EventType.values().first { it.suffix == name }
 
-enum class EventType(val suffix: String, val color: Color) {
-    TODAY("Today", EventTypeColor.TODAY.color),
-    LATEST("Latest", EventTypeColor.LATEST.color),
-    FOR_KIDS("ForKids", EventTypeColor.FOR_KIDS.color),
-    MOVIES("Movies", EventTypeColor.MOVIES.color),
-    PARTIES("Parties", EventTypeColor.PARTIES.color),
-    CONCERTS("Concerts", EventTypeColor.CONCERTS.color),
-    PRESENTATIONS("Presentations", EventTypeColor.PRESENTATIONS.color),
-    WALKS("Walks", EventTypeColor.WALKS.color),
-    SPORT("Sport", EventTypeColor.SPORT.color),
-    MEETINGS("Meetings", EventTypeColor.MEETINGS.color),
-    STANDUPS("Standups", EventTypeColor.STANDUPS.color),
-    FAIRS("Fairs", EventTypeColor.FAIRS.color),
-    THEATRE_PLAYS("TheatrePlays", EventTypeColor.THEATRE_PLAYS.color),
-    WORKSHOPS("Workshops", EventTypeColor.WORKSHOPS.color),
-    LECTURES("Lectures", EventTypeColor.LECTURES.color),
-    EXPOSITIONS("Expositions", EventTypeColor.EXPOSITIONS.color),
-    OTHER("Other", EventTypeColor.OTHER.color),
-    ENGLISH("English", EventTypeColor.ENGLISH.color),
-    ONLINE("Online", EventTypeColor.ONLINE.color),
-    BEMOWO("Bemowo", EventTypeColor.DISTRICT.color),
-    BIALOLEKA("Bialoleka", EventTypeColor.DISTRICT.color),
-    BIELANY("Bielany", EventTypeColor.DISTRICT.color),
-    MOKOTOW("Mokotow", EventTypeColor.DISTRICT.color),
-    OCHOTA("Ochota", EventTypeColor.DISTRICT.color),
-    PRAGA_POLUDNIE("PragaPoludnie", EventTypeColor.DISTRICT.color),
-    PRAGA_POLNOC("PragaPolnoc", EventTypeColor.DISTRICT.color),
-    SRODMIESCIE("Srodmiescie", EventTypeColor.DISTRICT.color),
-    REMBERTOW("Rembertow", EventTypeColor.DISTRICT.color),
-    TARGOWEK("Targowek", EventTypeColor.DISTRICT.color),
-    URSUS("Ursus", EventTypeColor.DISTRICT.color),
-    URSYNOW("Ursynow", EventTypeColor.DISTRICT.color),
-    WAWER("Wawer", EventTypeColor.DISTRICT.color),
-    WESOLA("Wesola", EventTypeColor.DISTRICT.color),
-    WILANOW("Wilanow", EventTypeColor.DISTRICT.color),
-    WLOCHY("Wlochy", EventTypeColor.DISTRICT.color),
-    WOLA("Wola", EventTypeColor.DISTRICT.color),
-    ZOLIBORZ("Zoliborz", EventTypeColor.DISTRICT.color),
-    OUTSIDE_THE_CITY("OutsideTheCity", EventTypeColor.OUTSIDE_THE_CITY.color)
+enum class EventType(val suffix: String, val color: Color, val nameId: Int) {
+    TODAY("Today", EventTypeColor.TODAY.color, R.string.today),
+    LATEST("Latest", EventTypeColor.LATEST.color, R.string.latest),
+    FOR_KIDS("ForKids", EventTypeColor.FOR_KIDS.color, R.string.for_kids),
+    MOVIES("Movies", EventTypeColor.MOVIES.color, R.string.movies),
+    PARTIES("Parties", EventTypeColor.PARTIES.color, R.string.parties),
+    CONCERTS("Concerts", EventTypeColor.CONCERTS.color, R.string.concerts),
+    PRESENTATIONS("Presentations", EventTypeColor.PRESENTATIONS.color, R.string.presentations),
+    WALKS("Walks", EventTypeColor.WALKS.color, R.string.walks),
+    SPORT("Sport", EventTypeColor.SPORT.color, R.string.sport),
+    MEETINGS("Meetings", EventTypeColor.MEETINGS.color, R.string.meetings),
+    STANDUPS("Standups", EventTypeColor.STANDUPS.color, R.string.standups),
+    FAIRS("Fairs", EventTypeColor.FAIRS.color, R.string.fairs),
+    THEATRE_PLAYS("TheatrePlays", EventTypeColor.THEATRE_PLAYS.color, R.string.theatre_plays),
+    WORKSHOPS("Workshops", EventTypeColor.WORKSHOPS.color, R.string.workshops),
+    LECTURES("Lectures", EventTypeColor.LECTURES.color, R.string.lectures),
+    EXPOSITIONS("Expositions", EventTypeColor.EXPOSITIONS.color, R.string.expositions),
+    OTHER("Other", EventTypeColor.OTHER.color, R.string.other),
+    ENGLISH("English", EventTypeColor.ENGLISH.color, R.string.english),
+    ONLINE("Online", EventTypeColor.ONLINE.color, R.string.online),
+    BEMOWO("Bemowo", EventTypeColor.DISTRICT.color, R.string.bemowo),
+    BIALOLEKA("Bialoleka", EventTypeColor.DISTRICT.color, R.string.bialoleka),
+    BIELANY("Bielany", EventTypeColor.DISTRICT.color, R.string.bielany),
+    MOKOTOW("Mokotow", EventTypeColor.DISTRICT.color, R.string.mokotow),
+    OCHOTA("Ochota", EventTypeColor.DISTRICT.color, R.string.ochota),
+    PRAGA_POLUDNIE("PragaPoludnie", EventTypeColor.DISTRICT.color, R.string.praga_poludnie),
+    PRAGA_POLNOC("PragaPolnoc", EventTypeColor.DISTRICT.color, R.string.praga_polnoc),
+    SRODMIESCIE("Srodmiescie", EventTypeColor.DISTRICT.color, R.string.srodmiescie),
+    REMBERTOW("Rembertow", EventTypeColor.DISTRICT.color, R.string.rembertow),
+    TARGOWEK("Targowek", EventTypeColor.DISTRICT.color, R.string.targowek),
+    URSUS("Ursus", EventTypeColor.DISTRICT.color, R.string.ursus),
+    URSYNOW("Ursynow", EventTypeColor.DISTRICT.color, R.string.ursynow),
+    WAWER("Wawer", EventTypeColor.DISTRICT.color, R.string.wawer),
+    WESOLA("Wesola", EventTypeColor.DISTRICT.color, R.string.wesola),
+    WILANOW("Wilanow", EventTypeColor.DISTRICT.color, R.string.wilanow),
+    WLOCHY("Wlochy", EventTypeColor.DISTRICT.color, R.string.wlochy),
+    WOLA("Wola", EventTypeColor.DISTRICT.color, R.string.wola),
+    ZOLIBORZ("Zoliborz", EventTypeColor.DISTRICT.color, R.string.zoliborz),
+    OUTSIDE_THE_CITY(
+        "OutsideTheCity",
+        EventTypeColor.OUTSIDE_THE_CITY.color,
+        R.string.outside_the_city
+    )
 }
 
 private enum class EventTypeColor(val color: Color) {

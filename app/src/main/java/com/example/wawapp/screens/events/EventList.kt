@@ -14,6 +14,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
@@ -51,7 +52,7 @@ fun EventList(
         if (EventStore.events.isEmpty()) {
             IllustrationView(
                 drawableId = R.drawable.empty_street,
-                text = "How empty...",
+                text = stringResource(id = R.string.empty),
                 modifier = Modifier
                     .fillMaxSize()
                     .verticalScroll(rememberScrollState())

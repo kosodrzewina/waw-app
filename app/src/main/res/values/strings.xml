@@ -1,3 +1,59 @@
 <resources>
     <string name="app_name">Waw App</string>
+
+    <string name="events">Wydarzenia</string>
+    <string name="map">Mapa</string>
+    <string name="profile">Profil</string>
+
+    <!--events screen-->
+    <string name="clear_filters">WYCZYŚĆ FILTRY</string>
+    <string name="empty">Jak tu pusto…</string>
+    <string name="no_events">Brak wydarzeń z wybranymi tagami</string>
+
+    <!--profile screen-->
+    <string name="login">Logowanie</string>
+    <string name="email">E-mail</string>
+    <string name="password">Hasło</string>
+    <string name="register">Zarejestruj się</string>
+    <string name="log_in">Zaloguj się</string>
+
+    <!--event types-->
+    <string name="today">Dzisiaj</string>
+    <string name="latest">Ostatnie</string>
+    <string name="for_kids">Dla dzieci</string>
+    <string name="movies">Filmy</string>
+    <string name="parties">Imprezy</string>
+    <string name="concerts">Koncerty</string>
+    <string name="presentations">Prezentacje</string>
+    <string name="walks">Spacery</string>
+    <string name="sport">Sport</string>
+    <string name="meetings">Spotkania</string>
+    <string name="standups">Standupy</string>
+    <string name="fairs">Targi</string>
+    <string name="theatre_plays">Spektakle teatralne</string>
+    <string name="workshops">Warsztaty</string>
+    <string name="lectures">Wykłady</string>
+    <string name="expositions">Wystawy</string>
+    <string name="other">Inne</string>
+    <string name="english">Po angielsku</string>
+    <string name="online">Online</string>
+    <string name="bemowo">Bemowo</string>
+    <string name="bialoleka">Białołęka</string>
+    <string name="bielany">Bielany</string>
+    <string name="mokotow">Mokotów</string>
+    <string name="ochota">Ochota</string>
+    <string name="praga_poludnie">Praga Południe</string>
+    <string name="praga_polnoc">Praga Północ</string>
+    <string name="srodmiescie">Śródmieście</string>
+    <string name="rembertow">Rembertów</string>
+    <string name="targowek">Targówek</string>
+    <string name="ursus">Ursus</string>
+    <string name="ursynow">Ursynów</string>
+    <string name="wawer">Wawer</string>
+    <string name="wesola">Wesoła</string>
+    <string name="wilanow">Wilanów</string>
+    <string name="wlochy">Włochy</string>
+    <string name="wola">Wola</string>
+    <string name="zoliborz">Żoliborz</string>
+    <string name="outside_the_city">Poza miastem</string>
 </resources>

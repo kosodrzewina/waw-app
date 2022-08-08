@@ -20,7 +20,11 @@ class MainActivity : ComponentActivity() {
         setContent {
             navHostController = rememberNavController()
 
-            Scaffold(bottomBar = { BottomNavBar(navController = navHostController) }) {
+            Scaffold(
+                bottomBar = {
+                    BottomNavBar(this, navController = navHostController)
+                }
+            ) {
                 NavGraph(
                     navController = navHostController,
                     context = this,

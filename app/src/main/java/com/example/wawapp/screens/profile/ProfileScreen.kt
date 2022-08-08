@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -26,7 +27,7 @@ fun ProfileScreen(viewModel: ProfileScreenViewModel = viewModel()) {
         modifier = Modifier.fillMaxSize()
     ) {
         Text(
-            text = "Login",
+            text = stringResource(id = R.string.login),
             fontSize = 48.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(top = 32.dp, bottom = 32.dp)
@@ -49,7 +50,7 @@ fun ProfileScreen(viewModel: ProfileScreenViewModel = viewModel()) {
                 OutlinedTextField(
                     value = viewModel.loginValue,
                     onValueChange = viewModel::onLoginValueChange,
-                    label = { Text(text = "E-mail") },
+                    label = { Text(text = stringResource(id = R.string.email)) },
                     modifier = Modifier
                         .padding(start = 16.dp, top = 16.dp, end = 16.dp, bottom = 8.dp)
                         .fillMaxWidth()
@@ -57,7 +58,7 @@ fun ProfileScreen(viewModel: ProfileScreenViewModel = viewModel()) {
                 OutlinedTextField(
                     value = viewModel.passwordValue,
                     onValueChange = viewModel::onPasswordValueChange,
-                    label = { Text(text = "Password") },
+                    label = { Text(text = stringResource(id = R.string.password)) },
                     visualTransformation = if (viewModel.passwordVisible)
                         VisualTransformation.None
                     else
@@ -84,7 +85,7 @@ fun ProfileScreen(viewModel: ProfileScreenViewModel = viewModel()) {
                         .fillMaxWidth()
                         .padding(start = 16.dp, end = 16.dp)
                 ) {
-                    Text(text = "Register")
+                    Text(text = stringResource(id = R.string.register))
                 }
                 Button(
                     shape = RoundedCornerShape(24.dp),
@@ -93,7 +94,7 @@ fun ProfileScreen(viewModel: ProfileScreenViewModel = viewModel()) {
                         .fillMaxWidth()
                         .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
                 ) {
-                    Text(text = "Log in")
+                    Text(text = stringResource(id = R.string.log_in))
                 }
             }
         }

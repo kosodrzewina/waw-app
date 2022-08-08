@@ -1,5 +1,6 @@
 package com.example.wawapp.screens.events
 
+import android.content.Context
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Spacer
@@ -15,9 +16,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.wawapp.events.EventType
 import com.example.wawapp.events.darkerColor
+import com.example.wawapp.events.getName
 
 @Composable
-fun EventTypesRow(selectedTypes: List<EventType>, onItemClick: (EventType) -> Unit) {
+fun EventTypesRow(
+    context: Context,
+    selectedTypes: List<EventType>,
+    onItemClick: (EventType) -> Unit
+) {
     LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
         item { Spacer(modifier = Modifier) }
         items(items = EventType.values()) { eventType ->
@@ -36,7 +42,7 @@ fun EventTypesRow(selectedTypes: List<EventType>, onItemClick: (EventType) -> Un
                     onItemClick(eventType)
                 }
             ) {
-                Text(text = eventType.suffix)
+                Text(text = eventType.getName(context))
             }
         }
         item { Spacer(modifier = Modifier) }
