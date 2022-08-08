@@ -11,8 +11,8 @@ import androidx.navigation.navArgument
 import com.example.wawapp.events.EventStore
 import com.example.wawapp.screens.EventPreviewScreen
 import com.example.wawapp.screens.events.EventsScreen
-import com.example.wawapp.screens.ProfileScreen
 import com.example.wawapp.screens.map.MapScreen
+import com.example.wawapp.screens.profile.ProfileScreen
 import java.net.URLDecoder
 import java.nio.charset.StandardCharsets
 
@@ -22,11 +22,7 @@ fun NavGraph(navController: NavHostController, context: Context, modifier: Modif
         navController = navController, startDestination = EVENTS_ROUTE, modifier = modifier
     ) {
         composable(EVENTS_ROUTE) {
-            EventsScreen(
-                events = EventStore.events,
-                context = context,
-                navController = navController
-            )
+            EventsScreen(events = EventStore.events, navController = navController)
         }
 
         composable(MAP_ROUTE) { MapScreen(context) }
