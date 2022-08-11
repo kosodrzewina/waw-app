@@ -1,7 +1,10 @@
 package com.example.wawapp.screens.profile
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -37,8 +40,8 @@ fun ProfileScreen(viewModel: ProfileScreenViewModel = viewModel()) {
             contentDescription = null,
             modifier = Modifier
                 .padding(bottom = 16.dp)
+                .weight(1f)
         )
-        Spacer(modifier = Modifier.weight(1f))
         Card(
             shape = RoundedCornerShape(16.dp),
             elevation = 8.dp,
