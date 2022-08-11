@@ -1,5 +1,6 @@
 package com.example.wawapp.events
 
+import android.graphics.Bitmap
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.clustering.ClusterItem
 
@@ -9,6 +10,7 @@ class Event(
     val url: String,
     val guid: String,
     val address: String,
+    val imageLink: String,
     val location: LatLng?,
     val types: List<EventType>
 ) : ClusterItem {

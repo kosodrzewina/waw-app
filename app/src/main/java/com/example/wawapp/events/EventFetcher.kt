@@ -29,6 +29,7 @@ object EventFetcher {
                     url = it.link,
                     guid = it.guid,
                     address = it.address,
+                    imageLink = it.image,
                     location = it.location?.let { locationDto ->
                         LatLng(
                             locationDto.latitude,
