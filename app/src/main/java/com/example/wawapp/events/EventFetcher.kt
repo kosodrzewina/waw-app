@@ -17,30 +17,34 @@ object EventFetcher {
     suspend fun fetch(vararg types: EventType) {
         withContext(IO) {
             Log.i(javaClass.name, "Fetching events...")
-            val response = URL("$URL_BY_TYPE${
-                types.joinToString("&eventTypes=") { it.suffix }
-            }").readText()
-            val eventListType = object : TypeToken<List<EventDto>>() {}.type
-            val fetchedEvents = Gson().fromJson<List<EventDto>>(response, eventListType)
-            val events = fetchedEvents.map {
-                Event(
-                    eventTitle = it.title,
-                    description = it.description,
-                    url = it.link,
-                    guid = it.guid,
-                    address = it.address,
-                    imageLink = it.image,
-                    location = it.location?.let { locationDto ->
-                        LatLng(
-                            locationDto.latitude,
-                            locationDto.longitude
-                        )
-                    },
-                    types = it.types.map { type -> stringToEventType(type) }
-                )
-            }
 
-            EventStore.updateEvents(events)
+            kotlin.runCatching {
+                val response = URL("$URL_BY_TYPE${
+                    types.joinToString("&eventTypes=") { it.suffix }
+                }").readText()
+
+                val eventListType = object : TypeToken<List<EventDto>>() {}.type
+                val fetchedEvents = Gson().fromJson<List<EventDto>>(response, eventListType)
+                val events = fetchedEvents.map {
+                    Event(
+                        eventTitle = it.title,
+                        description = it.description,
+                        url = it.link,
+                        guid = it.guid,
+                        address = it.address,
+                        imageLink = it.image,
+                        location = it.location?.let { locationDto ->
+                            LatLng(
+                                locationDto.latitude,
+                                locationDto.longitude
+                            )
+                        },
+                        types = it.types.map { type -> stringToEventType(type) }
+                    )
+                }
+
+                EventStore.updateEvents(events)
+            }
         }
     }
 
