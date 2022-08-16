@@ -10,7 +10,13 @@ class ProfileScreenViewModel : ViewModel() {
         private set
     var passwordValue by mutableStateOf("")
         private set
-    var passwordVisible by mutableStateOf(false)
+    var retypedPasswordValue by mutableStateOf("")
+        private set
+    var isPasswordVisible by mutableStateOf(false)
+        private set
+    var isRetypedPasswordVisible by mutableStateOf(false)
+        private set
+    var isRegistration by mutableStateOf(false)
         private set
 
     fun onLoginValueChange(newValue: String) {
@@ -21,7 +27,20 @@ class ProfileScreenViewModel : ViewModel() {
         passwordValue = newValue
     }
 
+    fun onRetypedPasswordValueChange(newValue: String) {
+        retypedPasswordValue = newValue
+    }
+
     fun switchPasswordVisibility() {
-        passwordVisible = !passwordVisible
+        isPasswordVisible = !isPasswordVisible
+    }
+
+    fun switchRetypedPasswordVisibility() {
+        isRetypedPasswordVisible = !isRetypedPasswordVisible
+    }
+
+    fun setIsRegistration(newValue: Boolean) {
+        retypedPasswordValue = ""
+        isRegistration = newValue
     }
 }

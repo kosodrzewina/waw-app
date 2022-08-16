@@ -1,10 +1,7 @@
 package com.example.wawapp.screens.profile
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -30,7 +27,12 @@ fun ProfileScreen(viewModel: ProfileScreenViewModel = viewModel()) {
         modifier = Modifier.fillMaxSize()
     ) {
         Text(
-            text = stringResource(id = R.string.login),
+            text = stringResource(
+                id = if (viewModel.isRegistration)
+                    R.string.registration
+                else
+                    R.string.login
+            ),
             fontSize = 48.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(top = 32.dp, bottom = 32.dp)
@@ -62,14 +64,14 @@ fun ProfileScreen(viewModel: ProfileScreenViewModel = viewModel()) {
                     value = viewModel.passwordValue,
                     onValueChange = viewModel::onPasswordValueChange,
                     label = { Text(text = stringResource(id = R.string.password)) },
-                    visualTransformation = if (viewModel.passwordVisible)
+                    visualTransformation = if (viewModel.isPasswordVisible)
                         VisualTransformation.None
                     else
                         PasswordVisualTransformation(),
                     trailingIcon = {
                         IconButton(onClick = viewModel::switchPasswordVisibility) {
                             Icon(
-                                imageVector = if (viewModel.passwordVisible)
+                                imageVector = if (viewModel.isPasswordVisible)
                                     Icons.Filled.Visibility
                                 else
                                     Icons.Filled.VisibilityOff,
@@ -78,17 +80,40 @@ fun ProfileScreen(viewModel: ProfileScreenViewModel = viewModel()) {
                         }
                     },
                     modifier = Modifier
-                        .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
+                        .padding(start = 16.dp, end = 16.dp, bottom = 8.dp)
                         .fillMaxWidth()
                 )
-                Button(
-                    shape = RoundedCornerShape(24.dp),
-                    onClick = { /*TODO*/ },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 16.dp, end = 16.dp)
-                ) {
-                    Text(text = stringResource(id = R.string.register))
+                if (viewModel.isRegistration) {
+                    OutlinedTextField(
+                        value = viewModel.retypedPasswordValue,
+                        onValueChange = viewModel::onRetypedPasswordValueChange,
+                        label = { Text(text = stringResource(id = R.string.retyped_password)) },
+                        visualTransformation = if (viewModel.isRetypedPasswordVisible)
+                            VisualTransformation.None
+                        else
+                            PasswordVisualTransformation(),
+                        trailingIcon = {
+                            IconButton(onClick = viewModel::switchRetypedPasswordVisibility) {
+                                Icon(
+                                    imageVector = if (viewModel.isRetypedPasswordVisible)
+                                        Icons.Filled.Visibility
+                                    else
+                                        Icons.Filled.VisibilityOff,
+                                    contentDescription = null
+                                )
+                            }
+                        },
+                        modifier = Modifier
+                            .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
+                            .fillMaxWidth()
+                    )
+                }
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Checkbox(
+                        checked = viewModel.isRegistration,
+                        onCheckedChange = viewModel::setIsRegistration
+                    )
+                    Text(text = stringResource(id = R.string.first_time))
                 }
                 Button(
                     shape = RoundedCornerShape(24.dp),
@@ -97,7 +122,14 @@ fun ProfileScreen(viewModel: ProfileScreenViewModel = viewModel()) {
                         .fillMaxWidth()
                         .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
                 ) {
-                    Text(text = stringResource(id = R.string.log_in))
+                    Text(
+                        text = stringResource(
+                            id = if (viewModel.isRegistration)
+                                R.string.register
+                            else
+                                R.string.log_in
+                        )
+                    )
                 }
             }
         }

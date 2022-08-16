@@ -12,8 +12,11 @@
 
     <!--profile screen-->
     <string name="login">Logowanie</string>
+    <string name="registration">Rejestracja</string>
     <string name="email">E-mail</string>
     <string name="password">Hasło</string>
+    <string name="retyped_password">Powtórzone hasło</string>
+    <string name="first_time">Pierwszy raz?</string>
     <string name="register">Zarejestruj się</string>
     <string name="log_in">Zaloguj się</string>
 
