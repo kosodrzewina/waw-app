@@ -13,9 +13,11 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.wawapp.R
 import com.example.wawapp.events.Event
 
 @Composable
@@ -30,7 +32,11 @@ fun EventsDialog(
     AlertDialog(
         onDismissRequest = onDismissRequest,
         title = {
-            Text(text = "Events", fontWeight = FontWeight.Bold, fontSize = 24.sp)
+            Text(
+                text = stringResource(id = R.string.events),
+                fontWeight = FontWeight.Bold,
+                fontSize = 24.sp
+            )
         },
         text = {
             LazyColumn(
@@ -51,7 +57,7 @@ fun EventsDialog(
             TextButton(onClick = {
                 onDismissRequest()
             }) {
-                Text(text = "CLOSE")
+                Text(text = stringResource(id = R.string.close))
             }
         },
         containerColor = Color.White,

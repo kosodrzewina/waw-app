@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">Waw App</string>
 
-    <string name="events">Wydarzenia</string>
     <string name="map">Mapa</string>
     <string name="profile">Profil</string>
+    <string name="events">Wydarzenia</string>
+    <string name="close">ZAMKNIJ</string>
 
     <!--events screen-->
     <string name="clear_filters">WYCZYŚĆ FILTRY</string>
