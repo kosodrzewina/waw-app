@@ -8,8 +8,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -19,83 +21,70 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.wawapp.R
+import kotlinx.coroutines.launch
 
 @Composable
 fun ProfileScreen(viewModel: ProfileScreenViewModel = viewModel()) {
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.fillMaxSize()
-    ) {
-        Text(
-            text = stringResource(
-                id = if (viewModel.isRegistration)
-                    R.string.registration
-                else
-                    R.string.login
-            ),
-            fontSize = 48.sp,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(top = 32.dp, bottom = 32.dp)
-        )
-        Image(
-            painter = painterResource(id = R.drawable.login),
-            contentDescription = null,
+    val coroutineScope = rememberCoroutineScope()
+    val scaffoldState = rememberScaffoldState()
+    val registrationGoodString = stringResource(id = R.string.registration_good)
+    val registrationBadString = stringResource(id = R.string.registration_bad)
+
+    Scaffold(scaffoldState = scaffoldState) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
-                .padding(bottom = 16.dp)
-                .weight(1f)
-        )
-        Card(
-            shape = RoundedCornerShape(16.dp),
-            elevation = 8.dp,
-            modifier = Modifier
-                .padding(start = 32.dp, end = 32.dp, bottom = 20.dp)
-                .fillMaxWidth()
+                .fillMaxSize()
+                .padding(it)
         ) {
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                OutlinedTextField(
-                    value = viewModel.loginValue,
-                    onValueChange = viewModel::onLoginValueChange,
-                    label = { Text(text = stringResource(id = R.string.email)) },
-                    modifier = Modifier
-                        .padding(start = 16.dp, top = 16.dp, end = 16.dp, bottom = 8.dp)
-                        .fillMaxWidth()
-                )
-                OutlinedTextField(
-                    value = viewModel.passwordValue,
-                    onValueChange = viewModel::onPasswordValueChange,
-                    label = { Text(text = stringResource(id = R.string.password)) },
-                    visualTransformation = if (viewModel.isPasswordVisible)
-                        VisualTransformation.None
+            Text(
+                text = stringResource(
+                    id = if (viewModel.isRegistration)
+                        R.string.registration
                     else
-                        PasswordVisualTransformation(),
-                    trailingIcon = {
-                        IconButton(onClick = viewModel::switchPasswordVisibility) {
-                            Icon(
-                                imageVector = if (viewModel.isPasswordVisible)
-                                    Icons.Filled.Visibility
-                                else
-                                    Icons.Filled.VisibilityOff,
-                                contentDescription = null
-                            )
-                        }
-                    },
-                    modifier = Modifier
-                        .padding(start = 16.dp, end = 16.dp, bottom = 8.dp)
-                        .fillMaxWidth()
-                )
-                if (viewModel.isRegistration) {
+                        R.string.login
+                ),
+                fontSize = 48.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(top = 32.dp, bottom = 32.dp)
+            )
+            Image(
+                painter = painterResource(id = R.drawable.login),
+                contentDescription = null,
+                modifier = Modifier
+                    .padding(bottom = 16.dp)
+                    .weight(1f)
+            )
+            Card(
+                shape = RoundedCornerShape(16.dp),
+                elevation = 8.dp,
+                modifier = Modifier
+                    .padding(start = 32.dp, end = 32.dp, bottom = 20.dp)
+                    .fillMaxWidth()
+            ) {
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     OutlinedTextField(
-                        value = viewModel.retypedPasswordValue,
-                        onValueChange = viewModel::onRetypedPasswordValueChange,
-                        label = { Text(text = stringResource(id = R.string.retyped_password)) },
-                        visualTransformation = if (viewModel.isRetypedPasswordVisible)
+                        value = viewModel.loginValue,
+                        onValueChange = viewModel::onLoginValueChange,
+                        enabled = !viewModel.isContactingServer,
+                        label = { Text(text = stringResource(id = R.string.email)) },
+                        modifier = Modifier
+                            .padding(start = 16.dp, top = 16.dp, end = 16.dp, bottom = 8.dp)
+                            .fillMaxWidth()
+                    )
+                    OutlinedTextField(
+                        value = viewModel.passwordValue,
+                        onValueChange = viewModel::onPasswordValueChange,
+                        enabled = !viewModel.isContactingServer,
+                        label = { Text(text = stringResource(id = R.string.password)) },
+                        visualTransformation = if (viewModel.isPasswordVisible)
                             VisualTransformation.None
                         else
                             PasswordVisualTransformation(),
                         trailingIcon = {
-                            IconButton(onClick = viewModel::switchRetypedPasswordVisibility) {
+                            IconButton(onClick = viewModel::switchPasswordVisibility) {
                                 Icon(
-                                    imageVector = if (viewModel.isRetypedPasswordVisible)
+                                    imageVector = if (viewModel.isPasswordVisible)
                                         Icons.Filled.Visibility
                                     else
                                         Icons.Filled.VisibilityOff,
@@ -104,32 +93,80 @@ fun ProfileScreen(viewModel: ProfileScreenViewModel = viewModel()) {
                             }
                         },
                         modifier = Modifier
-                            .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
+                            .padding(start = 16.dp, end = 16.dp, bottom = 8.dp)
                             .fillMaxWidth()
                     )
-                }
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Checkbox(
-                        checked = viewModel.isRegistration,
-                        onCheckedChange = viewModel::setIsRegistration
-                    )
-                    Text(text = stringResource(id = R.string.first_time))
-                }
-                Button(
-                    shape = RoundedCornerShape(24.dp),
-                    onClick = { /*TODO*/ },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
-                ) {
-                    Text(
-                        text = stringResource(
-                            id = if (viewModel.isRegistration)
-                                R.string.register
+                    if (viewModel.isRegistration) {
+                        OutlinedTextField(
+                            value = viewModel.retypedPasswordValue,
+                            onValueChange = viewModel::onRetypedPasswordValueChange,
+                            enabled = !viewModel.isContactingServer,
+                            label = { Text(text = stringResource(id = R.string.retyped_password)) },
+                            visualTransformation = if (viewModel.isRetypedPasswordVisible)
+                                VisualTransformation.None
                             else
-                                R.string.log_in
+                                PasswordVisualTransformation(),
+                            trailingIcon = {
+                                IconButton(onClick = viewModel::switchRetypedPasswordVisibility) {
+                                    Icon(
+                                        imageVector = if (viewModel.isRetypedPasswordVisible)
+                                            Icons.Filled.Visibility
+                                        else
+                                            Icons.Filled.VisibilityOff,
+                                        contentDescription = null
+                                    )
+                                }
+                            },
+                            modifier = Modifier
+                                .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
+                                .fillMaxWidth()
                         )
-                    )
+                    }
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Checkbox(
+                            checked = viewModel.isRegistration,
+                            onCheckedChange = viewModel::setIsRegistration,
+                            enabled = !viewModel.isContactingServer
+                        )
+                        Text(
+                            text = stringResource(id = R.string.first_time),
+                            color = if (viewModel.isContactingServer) Color.Gray else Color.Black
+                        )
+                    }
+                    Button(
+                        shape = RoundedCornerShape(24.dp),
+                        onClick = {
+                            val response = viewModel.register()
+
+                            coroutineScope.launch {
+                                scaffoldState.snackbarHostState.showSnackbar(
+                                    if (response)
+                                        registrationGoodString
+                                    else
+                                        registrationBadString
+                                )
+                            }
+                        },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
+                    ) {
+                        if (viewModel.isContactingServer) {
+                            CircularProgressIndicator(
+                                color = Color.White,
+                                modifier = Modifier.size(20.dp)
+                            )
+                        } else {
+                            Text(
+                                text = stringResource(
+                                    id = if (viewModel.isRegistration)
+                                        R.string.register
+                                    else
+                                        R.string.log_in
+                                )
+                            )
+                        }
+                    }
                 }
             }
         }

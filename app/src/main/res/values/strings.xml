@@ -20,6 +20,8 @@
     <string name="first_time">Pierwszy raz?</string>
     <string name="register">Zarejestruj się</string>
     <string name="log_in">Zaloguj się</string>
+    <string name="registration_good">Rejestracja przebiegła pomyślnie</string>
+    <string name="registration_bad">Wystąpił błąd podczas rejestracji</string>
 
     <!--event types-->
     <string name="today">Dzisiaj</string>

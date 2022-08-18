@@ -4,13 +4,16 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import com.example.wawapp.Authentication
+import com.example.wawapp.dtos.AuthResponseDto
+import com.example.wawapp.dtos.RegisterDto
 
 class ProfileScreenViewModel : ViewModel() {
-    var loginValue by mutableStateOf("")
+    var loginValue by mutableStateOf("test@test.test")
         private set
-    var passwordValue by mutableStateOf("")
+    var passwordValue by mutableStateOf("test123TEST$")
         private set
-    var retypedPasswordValue by mutableStateOf("")
+    var retypedPasswordValue by mutableStateOf("test123TEST$")
         private set
     var isPasswordVisible by mutableStateOf(false)
         private set
@@ -18,6 +21,24 @@ class ProfileScreenViewModel : ViewModel() {
         private set
     var isRegistration by mutableStateOf(false)
         private set
+    var isContactingServer by mutableStateOf(false)
+        private set
+
+    fun register(): Boolean {
+        isContactingServer = true
+
+        val response = Authentication.register(
+            RegisterDto(
+                email = loginValue,
+                password = passwordValue,
+                retypedPassword = retypedPasswordValue
+            )
+        )
+
+        isContactingServer = false
+
+        return response
+    }
 
     fun onLoginValueChange(newValue: String) {
         loginValue = newValue
