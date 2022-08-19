@@ -147,21 +147,23 @@ fun AuthScreen(viewModel: AuthScreenViewModel = viewModel()) {
                         Button(
                             shape = RoundedCornerShape(24.dp),
                             onClick = {
-                                val response = viewModel.authenticate()
-
                                 coroutineScope.launch {
-                                    scaffoldState.snackbarHostState.showSnackbar(
-                                        if (response)
-                                            if (viewModel.isRegistration)
-                                                registrationGoodString
+                                    val response = viewModel.authenticate()
+
+                                    coroutineScope.launch {
+                                        scaffoldState.snackbarHostState.showSnackbar(
+                                            if (response)
+                                                if (viewModel.isRegistration)
+                                                    registrationGoodString
+                                                else
+                                                    logInGoodString
                                             else
-                                                logInGoodString
-                                        else
-                                            if (viewModel.isRegistration)
-                                                registrationBadString
-                                            else
-                                                logInBadString
-                                    )
+                                                if (viewModel.isRegistration)
+                                                    registrationBadString
+                                                else
+                                                    logInBadString
+                                        )
+                                    }
                                 }
                             },
                             modifier = Modifier

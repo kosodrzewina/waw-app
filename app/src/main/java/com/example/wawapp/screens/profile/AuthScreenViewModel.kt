@@ -25,7 +25,7 @@ class AuthScreenViewModel(private val app: Application) : AndroidViewModel(app) 
     var isContactingServer by mutableStateOf(false)
         private set
 
-    fun authenticate(): Boolean {
+    suspend fun authenticate(): Boolean {
         isContactingServer = true
 
         val response = if (isRegistration)

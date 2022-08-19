@@ -12,6 +12,7 @@ import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.extensions.jsonBody
 import com.github.kittinunf.fuel.coroutines.awaitStringResponseResult
 import com.google.gson.Gson
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
@@ -63,11 +64,11 @@ object Auth {
         return isSuccess
     }
 
-    fun logIn(context: Context, logInDto: LogInDto): Boolean {
+    suspend fun logIn(context: Context, logInDto: LogInDto): Boolean {
         val logInDtoSerialized = gson.toJson(logInDto).toString()
         var isSuccess = false
 
-        runBlocking {
+        coroutineScope {
             val result = Fuel.post(LOG_IN_URL)
                 .jsonBody(logInDtoSerialized)
                 .awaitStringResponseResult()
