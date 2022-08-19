@@ -1,6 +1,9 @@
 package com.example.wawapp
 
 import android.content.Context
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
@@ -40,7 +43,7 @@ object Auth {
 
     var email: String? = null
         private set
-    var token: String? = null
+    var token: String? by mutableStateOf(null)
         private set
     var expirationDate: OffsetDateTime? = null
         private set
