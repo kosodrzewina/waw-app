@@ -20,7 +20,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         lifecycleScope.launch {
-            Auth.checkIfUserIsLoggedIn(this@MainActivity, this.coroutineContext.job)
+            Auth.checkIfUserIsLoggedIn(this@MainActivity)
         }
 
         setContent {

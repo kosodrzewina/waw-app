@@ -12,10 +12,9 @@ import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.extensions.jsonBody
 import com.github.kittinunf.fuel.coroutines.awaitStringResponseResult
 import com.google.gson.Gson
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.cancellable
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.runBlocking
 import java.io.IOException
@@ -103,12 +102,13 @@ object Auth {
         return isSuccess
     }
 
-    suspend fun checkIfUserIsLoggedIn(context: Context, job: Job) {
-        readFromDataStore(context).cancellable().collect {
-            email = it.first
-            token = it.second
-            expirationDate = OffsetDateTime.parse(it.third)
-            job.cancel()
+    suspend fun checkIfUserIsLoggedIn(context: Context) {
+        val data = readFromDataStore(context).first()
+
+        email = data.first
+        token = data.second
+        data.third?.let {
+            expirationDate = OffsetDateTime.parse(it)
         }
     }
 
