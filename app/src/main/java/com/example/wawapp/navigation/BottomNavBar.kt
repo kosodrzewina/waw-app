@@ -32,7 +32,7 @@ fun BottomNavBar(navController: NavController) {
         BottomNavBarItem(
             title = LocalContext.current.getString(R.string.profile),
             icon = Icons.Default.AccountCircle,
-            navRoute = PROFILE_ROUTE
+            navRoute = AUTH_ROUTE
         ),
     )
     val navBackStackEntry by navController.currentBackStackEntryAsState()

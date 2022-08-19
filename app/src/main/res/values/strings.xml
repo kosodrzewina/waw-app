@@ -22,6 +22,8 @@
     <string name="log_in">Zaloguj się</string>
     <string name="registration_good">Rejestracja przebiegła pomyślnie</string>
     <string name="registration_bad">Wystąpił błąd podczas rejestracji</string>
+    <string name="log_in_good">Zalogowano pomyślnie</string>
+    <string name="log_in_bad">Wystąpił błąd podczas logowania</string>
 
     <!--event types-->
     <string name="today">Dzisiaj</string>

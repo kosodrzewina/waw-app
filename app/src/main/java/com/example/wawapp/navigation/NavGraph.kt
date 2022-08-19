@@ -11,7 +11,7 @@ import com.example.wawapp.events.EventStore
 import com.example.wawapp.screens.EventPreviewScreen
 import com.example.wawapp.screens.events.EventsScreen
 import com.example.wawapp.screens.map.MapScreen
-import com.example.wawapp.screens.profile.ProfileScreen
+import com.example.wawapp.screens.profile.AuthScreen
 import java.net.URLDecoder
 import java.nio.charset.StandardCharsets
 
@@ -26,7 +26,7 @@ fun NavGraph(navController: NavHostController, modifier: Modifier = Modifier) {
 
         composable(MAP_ROUTE) { MapScreen() }
 
-        composable(PROFILE_ROUTE) { ProfileScreen() }
+        composable(AUTH_ROUTE) { AuthScreen() }
 
         composable(
             route = "$EVENT_PREVIEW_ROUTE/{encodedGuid}",

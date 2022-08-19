@@ -1,14 +1,15 @@
 package com.example.wawapp.screens.profile
 
+import android.app.Application
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.lifecycle.ViewModel
-import com.example.wawapp.Authentication
-import com.example.wawapp.dtos.AuthResponseDto
+import androidx.lifecycle.AndroidViewModel
+import com.example.wawapp.Auth
+import com.example.wawapp.dtos.LogInDto
 import com.example.wawapp.dtos.RegisterDto
 
-class ProfileScreenViewModel : ViewModel() {
+class AuthScreenViewModel(private val app: Application) : AndroidViewModel(app) {
     var loginValue by mutableStateOf("test@test.test")
         private set
     var passwordValue by mutableStateOf("test123TEST$")
@@ -24,16 +25,25 @@ class ProfileScreenViewModel : ViewModel() {
     var isContactingServer by mutableStateOf(false)
         private set
 
-    fun register(): Boolean {
+    fun authenticate(): Boolean {
         isContactingServer = true
 
-        val response = Authentication.register(
-            RegisterDto(
-                email = loginValue,
-                password = passwordValue,
-                retypedPassword = retypedPasswordValue
+        val response = if (isRegistration)
+            Auth.register(
+                RegisterDto(
+                    email = loginValue,
+                    password = passwordValue,
+                    retypedPassword = retypedPasswordValue
+                )
             )
-        )
+        else
+            Auth.logIn(
+                app,
+                LogInDto(
+                    email = loginValue,
+                    password = passwordValue
+                )
+            )
 
         isContactingServer = false
 
