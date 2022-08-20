@@ -5,13 +5,15 @@
     <string name="profile">Profil</string>
     <string name="events">Wydarzenia</string>
     <string name="close">ZAMKNIJ</string>
+    <string name="ok">OK</string>
+    <string name="cancel">ANULUJ</string>
 
     <!--events screen-->
     <string name="clear_filters">WYCZYŚĆ FILTRY</string>
     <string name="empty">Jak tu pusto…</string>
     <string name="no_events">Brak wydarzeń z wybranymi tagami</string>
 
-    <!--profile screen-->
+    <!--auth screen-->
     <string name="login">Logowanie</string>
     <string name="registration">Rejestracja</string>
     <string name="email">E-mail</string>
@@ -24,6 +26,11 @@
     <string name="registration_bad">Wystąpił błąd podczas rejestracji</string>
     <string name="log_in_good">Zalogowano pomyślnie</string>
     <string name="log_in_bad">Wystąpił błąd podczas logowania</string>
+
+    <!--profile screen-->
+    <string name="logging_out">Wylogowanie się</string>
+    <string name="logging_out_ask">Czy na pewno chcesz się wylogować?</string>
+    <string name="liked_events">Polubione wydarzenia</string>
 
     <!--event types-->
     <string name="today">Dzisiaj</string>

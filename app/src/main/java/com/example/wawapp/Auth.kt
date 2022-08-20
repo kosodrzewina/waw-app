@@ -106,6 +106,16 @@ object Auth {
         return isSuccess
     }
 
+    suspend fun logOut(context: Context) {
+        email = null
+        token = null
+        expirationDate = null
+
+        context.authDataStore.edit {
+            it.clear()
+        }
+    }
+
     suspend fun checkIfUserIsLoggedIn(context: Context) {
         val data = readFromDataStore(context).first()
 

@@ -36,7 +36,7 @@ fun AuthScreen(viewModel: AuthScreenViewModel = viewModel()) {
     Scaffold(scaffoldState = scaffoldState) {
         if (Auth.token != null) {
             Auth.email?.let { email ->
-                AuthScreen(email = email)
+                ProfileScreen(email = email)
             }
         } else {
             Column(
