@@ -33,11 +33,7 @@ fun EventListItem(event: Event, onClick: () -> Unit, resources: Resources) {
 
     Card(shape = RoundedCornerShape(16.dp), elevation = 8.dp, onClick = onClick) {
         Row(modifier = Modifier.fillMaxWidth()) {
-            Card(
-                shape = RoundedCornerShape(16.dp),
-                elevation = 8.dp,
-                modifier = Modifier.padding(16.dp)
-            ) {
+            Card(shape = RoundedCornerShape(16.dp), modifier = Modifier.padding(16.dp)) {
                 Image(
                     painter = rememberAsyncImagePainter(event.imageLink),
                     contentDescription = null,
