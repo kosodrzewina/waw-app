@@ -65,16 +65,14 @@ fun EventList(
             ) {
                 items(items = events) { event ->
                     EventListItem(
-                        event = event,
-                        resources = resources,
-                        onClick = {
-                            navController.navigate(
-                                Screen.EventPreviewScreen.routeWithArgs(
-                                    URLEncoder.encode(event.guid, StandardCharsets.UTF_8.toString())
-                                )
+                        event = event
+                    ) {
+                        navController.navigate(
+                            Screen.EventPreviewScreen.routeWithArgs(
+                                URLEncoder.encode(event.guid, StandardCharsets.UTF_8.toString())
                             )
-                        }
-                    )
+                        )
+                    }
                 }
             }
         }

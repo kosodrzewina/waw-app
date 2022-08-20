@@ -1,6 +1,5 @@
 package com.example.wawapp.screens.events
 
-import android.content.res.Resources
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -26,7 +25,7 @@ import com.example.wawapp.events.Event
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun EventListItem(event: Event, onClick: () -> Unit, resources: Resources) {
+fun EventListItem(event: Event, onClick: () -> Unit) {
     var isFavourite by remember {
         mutableStateOf(false)
     }
