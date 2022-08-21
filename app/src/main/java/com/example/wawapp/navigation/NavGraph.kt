@@ -29,10 +29,14 @@ fun NavGraph(navController: NavHostController, modifier: Modifier = Modifier) {
         composable(AUTH_ROUTE) { AuthScreen(navController) }
 
         composable(
-            route = "$EVENT_PREVIEW_ROUTE/{encodedGuid}",
+            route = "$EVENT_PREVIEW_ROUTE/{encodedGuid}/{isFavourite}",
             arguments = listOf(
                 navArgument("encodedGuid") {
                     type = NavType.StringType
+                    nullable = false
+                },
+                navArgument("isFavourite") {
+                    type = NavType.BoolType
                     nullable = false
                 }
             )
@@ -41,13 +45,18 @@ fun NavGraph(navController: NavHostController, modifier: Modifier = Modifier) {
                 entry.arguments?.getString("encodedGuid"),
                 StandardCharsets.UTF_8.toString()
             )
+            val isFavourite = entry.arguments?.getBoolean("isFavourite")
 
-            EventPreviewScreen(
-                event = EventStore.events.first { event ->
-                    event.guid == decodedGuid
-                },
-                navController = navController
-            )
+            isFavourite?.let {
+                val events = if (it) EventStore.favouriteEvents else EventStore.events
+
+                EventPreviewScreen(
+                    event = events.first { event ->
+                        event.guid == decodedGuid
+                    },
+                    navController = navController
+                )
+            }
         }
     }
 }

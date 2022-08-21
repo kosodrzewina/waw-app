@@ -67,7 +67,8 @@ fun EventList(
                     ) {
                         navController.navigate(
                             Screen.EventPreviewScreen.routeWithArgs(
-                                URLEncoder.encode(event.guid, StandardCharsets.UTF_8.toString())
+                                URLEncoder.encode(event.guid, StandardCharsets.UTF_8.toString()),
+                                "false"
                             )
                         )
                     }

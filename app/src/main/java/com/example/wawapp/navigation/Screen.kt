@@ -1,6 +1,6 @@
 package com.example.wawapp.navigation
 
-sealed class Screen(val navRoute: String) {
+sealed class Screen(private val navRoute: String) {
     object EventPreviewScreen : Screen(EVENT_PREVIEW_ROUTE)
 
     fun routeWithArgs(vararg args: String): String = buildString {
