@@ -31,9 +31,9 @@ fun EventList(
     events: List<Event>,
     scaffoldState: ScaffoldState,
     navController: NavController,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    viewModel: EventListViewModel = viewModel()
 ) {
-    val viewModel: EventListViewModel = viewModel()
     val isRefreshing by viewModel.isRefreshing.collectAsState()
 
     if (viewModel.errorHolder.isError) {
