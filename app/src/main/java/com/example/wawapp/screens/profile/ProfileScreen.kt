@@ -15,12 +15,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.wawapp.Auth
 import com.example.wawapp.R
+import com.example.wawapp.events.EventStore
 import kotlinx.coroutines.launch
 
 @Composable
-fun ProfileScreen(email: String, viewModel: ProfileScreenViewModel = viewModel()) {
+fun ProfileScreen(
+    email: String,
+    navController: NavController,
+    viewModel: ProfileScreenViewModel = viewModel()
+) {
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
 
@@ -28,6 +34,7 @@ fun ProfileScreen(email: String, viewModel: ProfileScreenViewModel = viewModel()
         LogOutAlertDialog(
             onDismissRequest = viewModel::closeDialog,
             onConfirmClick = {
+                viewModel.closeDialog()
                 coroutineScope.launch {
                     Auth.logOut(context)
                 }
@@ -65,6 +72,7 @@ fun ProfileScreen(email: String, viewModel: ProfileScreenViewModel = viewModel()
                 fontWeight = FontWeight.Thin,
                 modifier = Modifier.padding(start = 16.dp, bottom = 16.dp)
             )
+            FavouriteEventList(events = EventStore.favouriteEvents, navController = navController)
         }
     }
 }

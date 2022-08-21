@@ -8,6 +8,7 @@ import androidx.lifecycle.AndroidViewModel
 import com.example.wawapp.Auth
 import com.example.wawapp.dtos.LogInDto
 import com.example.wawapp.dtos.RegisterDto
+import com.example.wawapp.events.EventFetcher
 
 class AuthScreenViewModel(private val app: Application) : AndroidViewModel(app) {
     var loginValue by mutableStateOf("test@test.test")
@@ -48,6 +49,12 @@ class AuthScreenViewModel(private val app: Application) : AndroidViewModel(app) 
         isContactingServer = false
 
         return response
+    }
+
+    suspend fun fetchFavouriteEvents() {
+        Auth.token?.let {
+            EventFetcher.fetchFavourites(it)
+        }
     }
 
     fun onLoginValueChange(newValue: String) {

@@ -20,12 +20,13 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.wawapp.Auth
 import com.example.wawapp.R
 import kotlinx.coroutines.launch
 
 @Composable
-fun AuthScreen(viewModel: AuthScreenViewModel = viewModel()) {
+fun AuthScreen(navController: NavController, viewModel: AuthScreenViewModel = viewModel()) {
     val coroutineScope = rememberCoroutineScope()
     val scaffoldState = rememberScaffoldState()
     val logInGoodString = stringResource(id = R.string.log_in_good)
@@ -36,7 +37,7 @@ fun AuthScreen(viewModel: AuthScreenViewModel = viewModel()) {
     Scaffold(scaffoldState = scaffoldState) {
         if (Auth.token != null) {
             Auth.email?.let { email ->
-                ProfileScreen(email = email)
+                ProfileScreen(email = email, navController = navController)
             }
         } else {
             Column(
@@ -163,6 +164,8 @@ fun AuthScreen(viewModel: AuthScreenViewModel = viewModel()) {
                                                 else
                                                     logInBadString
                                         )
+
+                                        viewModel.fetchFavouriteEvents()
                                     }
                                 }
                             },

@@ -26,7 +26,7 @@ fun NavGraph(navController: NavHostController, modifier: Modifier = Modifier) {
 
         composable(MAP_ROUTE) { MapScreen() }
 
-        composable(AUTH_ROUTE) { AuthScreen() }
+        composable(AUTH_ROUTE) { AuthScreen(navController) }
 
         composable(
             route = "$EVENT_PREVIEW_ROUTE/{encodedGuid}",
