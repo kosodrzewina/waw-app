@@ -164,8 +164,6 @@ fun AuthScreen(navController: NavController, viewModel: AuthScreenViewModel = vi
                                                 else
                                                     logInBadString
                                         )
-
-                                        viewModel.fetchFavouriteEvents()
                                     }
                                 }
                             },

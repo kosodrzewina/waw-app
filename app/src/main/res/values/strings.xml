@@ -31,6 +31,7 @@
     <string name="logging_out">Wylogowanie się</string>
     <string name="logging_out_ask">Czy na pewno chcesz się wylogować?</string>
     <string name="liked_events">Polubione wydarzenia</string>
+    <string name="no_favourites">Nie masz polubionych wydarzeń</string>
 
     <!--event types-->
     <string name="today">Dzisiaj</string>

@@ -1,5 +1,6 @@
 package com.example.wawapp.screens.profile
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -7,7 +8,9 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Logout
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -19,6 +22,7 @@ import androidx.navigation.NavController
 import com.example.wawapp.Auth
 import com.example.wawapp.R
 import com.example.wawapp.events.EventStore
+import com.example.wawapp.screens.events.IllustrationView
 import kotlinx.coroutines.launch
 
 @Composable
@@ -29,6 +33,10 @@ fun ProfileScreen(
 ) {
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
+
+    LaunchedEffect(key1 = Unit) {
+        viewModel.fetchFavouriteEvents()
+    }
 
     if (viewModel.isLogOutDialog) {
         LogOutAlertDialog(
@@ -72,7 +80,25 @@ fun ProfileScreen(
                 fontWeight = FontWeight.Thin,
                 modifier = Modifier.padding(start = 16.dp, bottom = 16.dp)
             )
-            FavouriteEventList(events = EventStore.favouriteEvents, navController = navController)
+            if (viewModel.isFetchingFavourites) {
+                Column(
+                    modifier = Modifier.fillMaxSize(),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    CircularProgressIndicator()
+                }
+            } else if (EventStore.favouriteEvents.isEmpty()) {
+                IllustrationView(
+                    drawableId = R.drawable.no_favourites,
+                    text = stringResource(id = R.string.no_favourites)
+                )
+            } else {
+                FavouriteEventList(
+                    events = EventStore.favouriteEvents,
+                    navController = navController
+                )
+            }
         }
     }
 }

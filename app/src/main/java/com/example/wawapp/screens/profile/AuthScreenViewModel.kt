@@ -51,12 +51,6 @@ class AuthScreenViewModel(private val app: Application) : AndroidViewModel(app) 
         return response
     }
 
-    suspend fun fetchFavouriteEvents() {
-        Auth.token?.let {
-            EventFetcher.fetchFavourites(it)
-        }
-    }
-
     fun onLoginValueChange(newValue: String) {
         loginValue = newValue
     }
