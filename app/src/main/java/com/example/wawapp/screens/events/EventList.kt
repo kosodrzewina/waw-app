@@ -1,6 +1,5 @@
 package com.example.wawapp.screens.events
 
-import android.content.res.Resources
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -32,7 +31,6 @@ fun EventList(
     events: List<Event>,
     scaffoldState: ScaffoldState,
     navController: NavController,
-    resources: Resources,
     modifier: Modifier = Modifier
 ) {
     val viewModel: EventListViewModel = viewModel()
