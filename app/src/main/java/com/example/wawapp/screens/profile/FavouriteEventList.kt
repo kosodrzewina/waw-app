@@ -8,8 +8,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.wawapp.FavouriteEventListViewModelFactory
 import com.example.wawapp.events.Event
-import com.example.wawapp.factories.FavouriteEventListViewModelFactory
 
 @Composable
 fun FavouriteEventList(

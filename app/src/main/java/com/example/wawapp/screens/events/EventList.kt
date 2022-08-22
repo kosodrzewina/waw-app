@@ -15,10 +15,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.wawapp.EventListViewModelFactory
 import com.example.wawapp.R
 import com.example.wawapp.events.Event
 import com.example.wawapp.events.EventStore
-import com.example.wawapp.factories.EventListViewModelFactory
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import kotlinx.coroutines.launch
