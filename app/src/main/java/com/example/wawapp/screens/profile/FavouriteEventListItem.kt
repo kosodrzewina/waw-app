@@ -26,7 +26,7 @@ import com.example.wawapp.events.Event
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun FavouriteEventListItem(event: Event, onLikeClick: () -> Unit, onClick: () -> Unit) {
+fun FavouriteEventListItem(event: Event, onUnlikeClick: () -> Unit, onClick: () -> Unit) {
     Card(shape = RoundedCornerShape(16.dp), elevation = 8.dp, onClick = onClick) {
         Row(
             modifier = Modifier
@@ -69,7 +69,7 @@ fun FavouriteEventListItem(event: Event, onLikeClick: () -> Unit, onClick: () ->
                         modifier = Modifier
                             .padding(12.dp)
                             .fillMaxSize()
-                            .clickable { onLikeClick() }
+                            .clickable { onUnlikeClick() }
                     )
                 }
             }

@@ -33,6 +33,8 @@
     <string name="logging_out_ask">Czy na pewno chcesz się wylogować?</string>
     <string name="liked_events">Polubione wydarzenia</string>
     <string name="no_favourites">Nie masz polubionych wydarzeń</string>
+    <string name="removing_from_favourites">Usunięcie z ulubionych</string>
+    <string name="removing_from_favourites_ask">Czy na pewno chcesz usunąć z polubionych wydarzenie</string>
 
     <!--event types-->
     <string name="today">Dzisiaj</string>
