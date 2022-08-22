@@ -9,6 +9,8 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.wawapp.events.EventFetcher
+import com.example.wawapp.events.EventType
 import com.example.wawapp.navigation.BottomNavBar
 import com.example.wawapp.navigation.NavGraph
 import kotlinx.coroutines.job
@@ -20,6 +22,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         lifecycleScope.launch {
+            EventFetcher.fetch(*EventType.values())
             Auth.checkIfUserIsLoggedIn(this@MainActivity)
         }
 
