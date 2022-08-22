@@ -11,7 +11,7 @@ import androidx.datastore.preferences.preferencesDataStore
 import com.example.wawapp.dtos.AuthResponseDto
 import com.example.wawapp.dtos.LogInDto
 import com.example.wawapp.dtos.RegisterDto
-import com.example.wawapp.events.EventFetcher
+import com.example.wawapp.events.EventManager
 import com.example.wawapp.events.EventStore
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.extensions.jsonBody
@@ -129,7 +129,7 @@ object Auth {
         }
 
         token?.let {
-            EventFetcher.fetchFavourites(it)
+            EventManager.fetchFavourites(it)
         }
     }
 

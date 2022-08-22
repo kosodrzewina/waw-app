@@ -14,13 +14,13 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.withContext
 import java.net.URL
 
-object EventFetcher {
+object EventManager {
     private const val BASE_URL = "http://10.0.2.2:5000/api/events"
     private const val URL_BY_TYPE = "$BASE_URL/by-types?eventTypes="
     private const val URL_FAVOURITES = "$BASE_URL/favourites"
     private const val URL_LIKE = "$BASE_URL/like"
 
-    suspend fun fetch(vararg types: EventType) {
+    suspend fun fetchEvents(vararg types: EventType) {
         withContext(IO) {
             Log.i(javaClass.name, "Fetching events...")
 

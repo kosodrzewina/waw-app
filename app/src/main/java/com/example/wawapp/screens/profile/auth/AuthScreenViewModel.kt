@@ -8,7 +8,6 @@ import androidx.lifecycle.AndroidViewModel
 import com.example.wawapp.Auth
 import com.example.wawapp.dtos.LogInDto
 import com.example.wawapp.dtos.RegisterDto
-import com.example.wawapp.events.EventFetcher
 
 class AuthScreenViewModel(private val app: Application) : AndroidViewModel(app) {
     var loginValue by mutableStateOf("test@test.test")
