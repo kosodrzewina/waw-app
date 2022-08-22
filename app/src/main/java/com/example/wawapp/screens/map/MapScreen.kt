@@ -10,8 +10,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -20,14 +19,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.wawapp.EventWebView
-import com.example.wawapp.events.Event
-
-private val selectedEvent: MutableState<Event?> = mutableStateOf(null)
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun MapScreen() {
+fun MapScreen(viewModel: MapScreenViewModel = viewModel()) {
+    val coroutineScope = rememberCoroutineScope()
     val sheetState = rememberBottomSheetState(initialValue = BottomSheetValue.Collapsed)
     val scaffoldState = rememberBottomSheetScaffoldState(bottomSheetState = sheetState)
     val bottomSheetHeight = LocalConfiguration.current.screenHeightDp.dp -
@@ -38,9 +37,18 @@ fun MapScreen() {
         sheetShape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
         sheetPeekHeight = (-100).dp,
         floatingActionButton = {
-            Button(shape = CircleShape, modifier = Modifier.size(45.dp), onClick = { /*TODO*/ }) {
+            Button(
+                shape = CircleShape,
+                modifier = Modifier.size(45.dp),
+                onClick = {
+                    coroutineScope.launch {
+                        viewModel.likeEvent()
+                    }
+                }
+            ) {
                 Icon(
                     imageVector = Icons.Default.Favorite,
+                    tint = viewModel.getIconTint(),
                     contentDescription = null
                 )
             }
@@ -59,7 +67,7 @@ fun MapScreen() {
                     .fillMaxWidth()
                     .height(bottomSheetHeight)
             ) {
-                selectedEvent.value?.let { event ->
+                viewModel.selectedEvent.value?.let { event ->
                     Text(
                         text = event.title,
                         fontSize = 24.sp,
@@ -93,6 +101,6 @@ fun MapScreen() {
             }
         }
     ) {
-        ClusteredGoogleMap(sheetState = sheetState, selectedEvent = selectedEvent)
+        ClusteredGoogleMap(sheetState = sheetState, selectedEvent = viewModel.selectedEvent)
     }
 }
