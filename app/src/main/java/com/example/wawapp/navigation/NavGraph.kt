@@ -11,7 +11,7 @@ import com.example.wawapp.events.EventStore
 import com.example.wawapp.screens.EventPreviewScreen
 import com.example.wawapp.screens.events.EventsScreen
 import com.example.wawapp.screens.map.MapScreen
-import com.example.wawapp.screens.profile.AuthScreen
+import com.example.wawapp.screens.profile.auth.AuthScreen
 import java.net.URLDecoder
 import java.nio.charset.StandardCharsets
 

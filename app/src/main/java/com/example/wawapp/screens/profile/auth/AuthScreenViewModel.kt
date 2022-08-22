@@ -1,4 +1,4 @@
-package com.example.wawapp.screens.profile
+package com.example.wawapp.screens.profile.auth
 
 import android.app.Application
 import androidx.compose.runtime.getValue

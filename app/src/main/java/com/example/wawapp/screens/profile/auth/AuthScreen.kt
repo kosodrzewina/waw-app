@@ -1,4 +1,4 @@
-package com.example.wawapp.screens.profile
+package com.example.wawapp.screens.profile.auth
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -23,6 +23,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.wawapp.Auth
 import com.example.wawapp.R
+import com.example.wawapp.screens.profile.ProfileScreen
 import kotlinx.coroutines.launch
 
 @Composable
