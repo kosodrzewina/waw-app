@@ -12,6 +12,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.wawapp.R
 import com.example.wawapp.events.Event
+import com.example.wawapp.factories.EventsScreenViewModelFactory
 
 @Composable
 fun EventsScreen(

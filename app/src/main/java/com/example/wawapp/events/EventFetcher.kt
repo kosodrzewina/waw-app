@@ -1,5 +1,6 @@
 package com.example.wawapp.events
 
+import android.util.Base64
 import android.util.Log
 import com.example.wawapp.dtos.EventDto
 import com.github.kittinunf.fuel.Fuel
@@ -18,6 +19,7 @@ object EventFetcher {
     private const val URL_BY_TYPE = "$BASE_URL/by-types?eventTypes="
     private const val URL_BY_GUID = "$BASE_URL/by-guid?guid="
     private const val URL_FAVOURITES = "$BASE_URL/favourites"
+    private const val URL_LIKE = "$BASE_URL/like"
 
     suspend fun fetch(vararg types: EventType) {
         withContext(IO) {
@@ -57,6 +59,29 @@ object EventFetcher {
                 eventsDto?.let {
                     val events = mapEvents(eventsDto)
                     EventStore.updateFavouriteEvents(events)
+                }
+            }
+        }
+    }
+
+    suspend fun likeEvent(token: String, guid: String, liked: Boolean) {
+        val encodedGuid = Base64.encodeToString(guid.toByteArray(), Base64.DEFAULT)
+
+        Log.i(javaClass.name, "Liking event $guid...")
+        coroutineScope {
+            val (_, response, _) = Fuel
+                .put("$URL_LIKE?encodedGuid=$encodedGuid&liked=$liked")
+                .authentication()
+                .bearer(token)
+                .awaitStringResponseResult()
+
+            if (response.statusCode == 200) {
+                if (liked) {
+                    val event = EventStore.events.first { it.guid == guid }
+                    EventStore.favouriteEvents.add(event)
+                } else {
+                    val event = EventStore.favouriteEvents.first { it.guid == guid }
+                    EventStore.favouriteEvents.remove(event)
                 }
             }
         }

@@ -11,10 +11,12 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -22,14 +24,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import com.example.wawapp.events.Event
+import com.example.wawapp.events.EventStore
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun EventListItem(event: Event, onClick: () -> Unit) {
-    var isFavourite by remember {
-        mutableStateOf(false)
-    }
-
+fun EventListItem(event: Event, onLikeClick: () -> Unit, onClick: () -> Unit) {
     Card(shape = RoundedCornerShape(16.dp), elevation = 8.dp, onClick = onClick) {
         Row(modifier = Modifier.fillMaxWidth()) {
             Card(shape = RoundedCornerShape(16.dp), modifier = Modifier.padding(16.dp)) {
@@ -53,13 +52,13 @@ fun EventListItem(event: Event, onClick: () -> Unit) {
             }
             Box(modifier = Modifier.padding(top = 16.dp, end = 16.dp, bottom = 16.dp)) {
                 Icon(
-                    imageVector = if (isFavourite) Icons.Default.Favorite
-                    else Icons.Default.FavoriteBorder,
+                    imageVector = if (EventStore.favouriteEvents.any { it.guid == event.guid })
+                        Icons.Default.Favorite
+                    else
+                        Icons.Default.FavoriteBorder,
                     contentDescription = null,
                     tint = Color.Red,
-                    modifier = Modifier.clickable {
-                        isFavourite = !isFavourite
-                    }
+                    modifier = Modifier.clickable { onLikeClick() }
                 )
             }
         }

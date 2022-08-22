@@ -8,11 +8,9 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ScaffoldState
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -20,11 +18,10 @@ import androidx.navigation.NavController
 import com.example.wawapp.R
 import com.example.wawapp.events.Event
 import com.example.wawapp.events.EventStore
-import com.example.wawapp.navigation.Screen
+import com.example.wawapp.factories.EventListViewModelFactory
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
-import java.net.URLEncoder
-import java.nio.charset.StandardCharsets
+import kotlinx.coroutines.launch
 
 @Composable
 fun EventList(
@@ -32,9 +29,16 @@ fun EventList(
     scaffoldState: ScaffoldState,
     navController: NavController,
     modifier: Modifier = Modifier,
-    viewModel: EventListViewModel = viewModel()
+    viewModel: EventListViewModel = viewModel(
+        factory = EventListViewModelFactory(
+            scaffoldState,
+            navController
+        )
+    )
 ) {
     val isRefreshing by viewModel.isRefreshing.collectAsState()
+    val context = LocalContext.current
+    val coroutineScope = rememberCoroutineScope()
 
     if (viewModel.errorHolder.isError) {
         LaunchedEffect(viewModel.errorHolder) {
@@ -63,14 +67,14 @@ fun EventList(
             ) {
                 items(items = events) { event ->
                     EventListItem(
-                        event = event
+                        event = event,
+                        onLikeClick = {
+                            coroutineScope.launch {
+                                viewModel.likeEvent(context, event.guid)
+                            }
+                        }
                     ) {
-                        navController.navigate(
-                            Screen.EventPreviewScreen.routeWithArgs(
-                                URLEncoder.encode(event.guid, StandardCharsets.UTF_8.toString()),
-                                "false"
-                            )
-                        )
+                        viewModel.navigateToEventPreviewScreen(event.guid)
                     }
                 }
             }
