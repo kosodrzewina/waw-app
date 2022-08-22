@@ -17,7 +17,6 @@ import java.net.URL
 object EventFetcher {
     private const val BASE_URL = "http://10.0.2.2:5000/api/events"
     private const val URL_BY_TYPE = "$BASE_URL/by-types?eventTypes="
-    private const val URL_BY_GUID = "$BASE_URL/by-guid?guid="
     private const val URL_FAVOURITES = "$BASE_URL/favourites"
     private const val URL_LIKE = "$BASE_URL/like"
 
@@ -37,10 +36,6 @@ object EventFetcher {
                 EventStore.updateEvents(events)
             }
         }
-    }
-
-    fun fetch(guid: String) {
-        // TODO: fetch by guid
     }
 
     suspend fun fetchFavourites(token: String) {
