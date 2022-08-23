@@ -75,6 +75,10 @@ fun ProfileScreen(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     CircularProgressIndicator()
+                    Text(
+                        text = stringResource(id = R.string.loading_your_profile),
+                        modifier = Modifier.padding(16.dp)
+                    )
                 }
             } else if (EventStore.favouriteEvents.isEmpty()) {
                 IllustrationView(

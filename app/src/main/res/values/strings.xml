@@ -35,6 +35,7 @@
     <string name="no_favourites">Nie masz polubionych wydarzeń</string>
     <string name="removing_from_favourites">Usunięcie z ulubionych</string>
     <string name="removing_from_favourites_ask">Czy na pewno chcesz usunąć z polubionych wydarzenie</string>
+    <string name="loading_your_profile">Ładuję twój profil…</string>
 
     <!--event types-->
     <string name="today">Dzisiaj</string>
