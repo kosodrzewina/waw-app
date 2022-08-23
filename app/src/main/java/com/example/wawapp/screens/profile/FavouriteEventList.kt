@@ -17,6 +17,7 @@ import kotlinx.coroutines.launch
 fun FavouriteEventList(
     events: List<Event>,
     navController: NavController,
+    Header: @Composable () -> Unit,
     viewModel: FavouriteEventListViewModel = viewModel(
         factory = FavouriteEventListViewModelFactory(
             navController
@@ -45,6 +46,10 @@ fun FavouriteEventList(
         contentPadding = PaddingValues(12.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
+        item {
+            Header()
+        }
+
         items(items = events) { event ->
             FavouriteEventListItem(
                 event = event,

@@ -68,18 +68,6 @@ fun ProfileScreen(
                 .fillMaxSize()
                 .padding(it)
         ) {
-            Text(
-                text = email,
-                fontSize = 36.sp,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(16.dp)
-            )
-            Text(
-                text = "${stringResource(id = R.string.liked_events)}:",
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Thin,
-                modifier = Modifier.padding(start = 16.dp, bottom = 16.dp)
-            )
             if (viewModel.isFetchingFavourites) {
                 Column(
                     modifier = Modifier.fillMaxSize(),
@@ -96,6 +84,22 @@ fun ProfileScreen(
             } else {
                 FavouriteEventList(
                     events = EventStore.favouriteEvents,
+                    Header = {
+                        Column {
+                            Text(
+                                text = email,
+                                fontSize = 36.sp,
+                                fontWeight = FontWeight.Bold,
+                                modifier = Modifier.padding(16.dp)
+                            )
+                            Text(
+                                text = "${stringResource(id = R.string.liked_events)}:",
+                                fontSize = 18.sp,
+                                fontWeight = FontWeight.Thin,
+                                modifier = Modifier.padding(start = 16.dp, bottom = 16.dp)
+                            )
+                        }
+                    },
                     navController = navController
                 )
             }
