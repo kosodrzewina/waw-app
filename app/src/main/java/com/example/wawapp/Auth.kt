@@ -38,9 +38,9 @@ private object PreferenceKey {
 }
 
 object Auth {
-    private const val BASE_URL = "http://10.0.2.2:5000/api/users"
-    private const val REGISTER_URL = "$BASE_URL/register"
-    private const val LOG_IN_URL = "$BASE_URL/log-in"
+    private const val BASE_USERS_URL = "$BASE_API_URL/users"
+    private const val REGISTER_URL = "$BASE_USERS_URL/register"
+    private const val LOG_IN_URL = "$BASE_USERS_URL/log-in"
     private val gson = Gson()
 
     var email: String? = null

@@ -3,6 +3,7 @@ package com.example.wawapp.events
 import android.util.Base64
 import android.util.Log
 import androidx.compose.runtime.mutableStateOf
+import com.example.wawapp.BASE_API_URL
 import com.example.wawapp.dtos.EventDto
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.extensions.authentication
@@ -16,18 +17,18 @@ import kotlinx.coroutines.withContext
 import java.net.URL
 
 object EventManager {
-    private const val BASE_URL = "http://10.0.2.2:5000/api/events"
-    private const val URL_BY_TYPE = "$BASE_URL/by-types?eventTypes="
-    private const val URL_FAVOURITES = "$BASE_URL/favourites"
-    private const val URL_LIKE = "$BASE_URL/like"
-    private const val URL_LIKE_COUNT = "$BASE_URL/like-count"
+    private const val BASE_EVENTS_URL = "$BASE_API_URL/events"
+    private const val BY_TYPE_URL = "$BASE_EVENTS_URL/by-types?eventTypes="
+    private const val FAVOURITES_URL = "$BASE_EVENTS_URL/favourites"
+    private const val LIKE_URL = "$BASE_EVENTS_URL/like"
+    private const val LIKE_COUNT_URL = "$BASE_EVENTS_URL/like-count"
 
     suspend fun fetchEvents(vararg types: EventType) {
         withContext(IO) {
             Log.i(javaClass.name, "Fetching events...")
 
             kotlin.runCatching {
-                val response = URL("$URL_BY_TYPE${
+                val response = URL("$BY_TYPE_URL${
                     types.joinToString("&eventTypes=") { it.suffix }
                 }").readText()
 
@@ -45,7 +46,7 @@ object EventManager {
             Log.i(javaClass.name, "Fetching favourite events...")
 
             coroutineScope {
-                val result = Fuel.get(URL_FAVOURITES)
+                val result = Fuel.get(FAVOURITES_URL)
                     .authentication()
                     .bearer(token)
                     .awaitStringResponseResult()
@@ -67,7 +68,7 @@ object EventManager {
         Log.i(javaClass.name, "Liking event $guid...")
         coroutineScope {
             val (_, response, _) = Fuel
-                .put("$URL_LIKE?encodedGuid=$encodedGuid&liked=$liked")
+                .put("$LIKE_URL?encodedGuid=$encodedGuid&liked=$liked")
                 .authentication()
                 .bearer(token)
                 .awaitStringResponseResult()
@@ -90,7 +91,7 @@ object EventManager {
         Log.i(javaClass.name, "Getting like count for event $guid")
         return coroutineScope {
             val (_, response, result) = Fuel
-                .get("$URL_LIKE_COUNT?encodedGuid=$encodedGuid")
+                .get("$LIKE_COUNT_URL?encodedGuid=$encodedGuid")
                 .awaitStringResponseResult()
 
             if (response.statusCode == 200) {
