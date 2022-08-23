@@ -19,6 +19,7 @@ object EventManager {
     private const val URL_BY_TYPE = "$BASE_URL/by-types?eventTypes="
     private const val URL_FAVOURITES = "$BASE_URL/favourites"
     private const val URL_LIKE = "$BASE_URL/like"
+    private const val URL_LIKE_COUNT = "$BASE_URL/like-count"
 
     suspend fun fetchEvents(vararg types: EventType) {
         withContext(IO) {
@@ -79,6 +80,25 @@ object EventManager {
                     EventStore.favouriteEvents.remove(event)
                 }
             }
+        }
+    }
+
+    suspend fun getEventLikeCount(guid: String): Int {
+        val encodedGuid = Base64.encodeToString(guid.toByteArray(), Base64.DEFAULT)
+
+        Log.i(javaClass.name, "Getting like count for event $guid")
+        return coroutineScope {
+            val (_, response, result) = Fuel
+                .get("$URL_LIKE_COUNT?encodedGuid=$encodedGuid")
+                .awaitStringResponseResult()
+
+            if (response.statusCode == 200) {
+                result.component1()?.toInt()?.let {
+                    return@coroutineScope it
+                }
+            }
+
+            0
         }
     }
 

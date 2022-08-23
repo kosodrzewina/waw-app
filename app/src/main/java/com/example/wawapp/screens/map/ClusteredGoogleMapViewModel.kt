@@ -2,7 +2,9 @@ package com.example.wawapp.screens.map
 
 import android.content.Context
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.example.wawapp.events.Event
 import com.example.wawapp.events.EventStore
@@ -21,6 +23,16 @@ class ClusteredGoogleMapViewModel : ViewModel() {
     val warsawLocation = LatLng(WARSAW_LAT, WARSAW_LONG)
     val properties: MapProperties = MapProperties()
     val selectedClusterEvents: MutableState<List<Event>> = mutableStateOf(arrayListOf())
+    var isDialogOpen by mutableStateOf(false)
+        private set
+
+    fun showDialog() {
+        isDialogOpen = true
+    }
+
+    fun closeDialog() {
+        isDialogOpen = false
+    }
 
     fun setUpClusters(
         context: Context,

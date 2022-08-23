@@ -2,7 +2,10 @@ package com.example.wawapp.screens.map
 
 import androidx.compose.material.BottomSheetState
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -20,27 +23,24 @@ import kotlinx.coroutines.launch
 fun ClusteredGoogleMap(
     sheetState: BottomSheetState,
     selectedEvent: MutableState<Event?>,
+    updateLikeCount: suspend () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: ClusteredGoogleMapViewModel = viewModel()
 ) {
-    var isDialogOpen by remember {
-        mutableStateOf(false)
-    }
     val cameraPositionState = rememberCameraPositionState {
         position = CameraPosition.fromLatLngZoom(viewModel.warsawLocation, 11f)
     }
-    val scope = rememberCoroutineScope()
+    val coroutineScope = rememberCoroutineScope()
     val context = LocalContext.current
 
-    if (isDialogOpen) {
+    if (viewModel.isDialogOpen) {
         EventsDialog(
             viewModel.selectedClusterEvents.value,
             selectedEvent = selectedEvent,
-            onDismissRequest = {
-                isDialogOpen = false
-            }
+            onDismissRequest = viewModel::closeDialog
         ) {
-            scope.launch {
+            coroutineScope.launch {
+                updateLikeCount()
                 sheetState.expand()
             }
         }
@@ -56,13 +56,14 @@ fun ClusteredGoogleMap(
                 googleMap,
                 selectedEvent,
                 expandBottomSheet = {
-                    scope.launch {
+                    coroutineScope.launch {
                         sheetState.expand()
+                        updateLikeCount()
                     }
                 },
                 onClusterClickListener = {
                     viewModel.selectedClusterEvents.value = it.items.toMutableList()
-                    isDialogOpen = true
+                    viewModel.showDialog()
                     true
                 }
             )

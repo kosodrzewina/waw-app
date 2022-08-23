@@ -43,6 +43,7 @@ fun MapScreen(viewModel: MapScreenViewModel = viewModel()) {
                 onClick = {
                     coroutineScope.launch {
                         viewModel.likeEvent()
+                        viewModel.updateLikeCount()
                     }
                 }
             ) {
@@ -86,7 +87,7 @@ fun MapScreen(viewModel: MapScreenViewModel = viewModel()) {
                                 .size(15.dp)
                         )
                         Text(
-                            text = "100",
+                            text = viewModel.likeCount.toString(),
                             fontSize = 12.sp,
                             maxLines = 2,
                             fontWeight = FontWeight.Thin,
@@ -101,6 +102,10 @@ fun MapScreen(viewModel: MapScreenViewModel = viewModel()) {
             }
         }
     ) {
-        ClusteredGoogleMap(sheetState = sheetState, selectedEvent = viewModel.selectedEvent)
+        ClusteredGoogleMap(
+            sheetState = sheetState,
+            selectedEvent = viewModel.selectedEvent,
+            updateLikeCount = viewModel::updateLikeCount
+        )
     }
 }
