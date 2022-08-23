@@ -23,7 +23,8 @@ fun IllustrationView(drawableId: Int, text: String, modifier: Modifier = Modifie
     ) {
         Image(
             painter = painterResource(id = drawableId),
-            contentDescription = null
+            contentDescription = null,
+            modifier = Modifier.padding(start = 48.dp, end = 48.dp)
         )
         Text(
             text = text,
