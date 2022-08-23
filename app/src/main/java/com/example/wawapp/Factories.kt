@@ -1,3 +1,5 @@
+@file:Suppress("UNCHECKED_CAST")
+
 package com.example.wawapp
 
 import androidx.compose.material.ScaffoldState

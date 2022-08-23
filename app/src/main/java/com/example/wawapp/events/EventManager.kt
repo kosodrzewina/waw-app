@@ -2,6 +2,7 @@ package com.example.wawapp.events
 
 import android.util.Base64
 import android.util.Log
+import androidx.compose.runtime.mutableStateOf
 import com.example.wawapp.dtos.EventDto
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.extensions.authentication
@@ -102,7 +103,7 @@ object EventManager {
         }
     }
 
-    private fun mapEvents(eventsDto: List<EventDto>) = eventsDto.map {
+    private suspend fun mapEvents(eventsDto: List<EventDto>) = eventsDto.map {
         Event(
             eventTitle = it.title,
             description = it.description,
@@ -116,6 +117,7 @@ object EventManager {
                     locationDto.longitude
                 )
             },
+            likeCount = mutableStateOf(getEventLikeCount(it.guid)),
             types = it.types.map { type -> stringToEventType(type) }
         )
     }

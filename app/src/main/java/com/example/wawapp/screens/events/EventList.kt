@@ -1,14 +1,13 @@
 package com.example.wawapp.screens.events
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.ScaffoldState
+import androidx.compose.material.Text
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -52,13 +51,17 @@ fun EventList(
         onRefresh = { viewModel.refresh() }
     ) {
         if (EventStore.events.isEmpty()) {
-            IllustrationView(
-                drawableId = R.drawable.empty_street,
-                text = stringResource(id = R.string.empty),
-                modifier = Modifier
-                    .fillMaxSize()
-                    .verticalScroll(rememberScrollState())
-            )
+            Column(
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.fillMaxSize()
+            ) {
+                CircularProgressIndicator()
+                Text(
+                    text = stringResource(id = R.string.loading_events),
+                    modifier = Modifier.padding(16.dp)
+                )
+            }
         } else {
             LazyColumn(
                 contentPadding = PaddingValues(12.dp),
@@ -72,10 +75,9 @@ fun EventList(
                             coroutineScope.launch {
                                 viewModel.likeEvent(context, event.guid)
                             }
-                        }
-                    ) {
-                        viewModel.navigateToEventPreviewScreen(event.guid)
-                    }
+                        },
+                        onClick = { viewModel.navigateToEventPreviewScreen(event.guid) }
+                    )
                 }
             }
         }

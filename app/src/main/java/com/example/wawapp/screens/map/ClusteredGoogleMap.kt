@@ -23,7 +23,6 @@ import kotlinx.coroutines.launch
 fun ClusteredGoogleMap(
     sheetState: BottomSheetState,
     selectedEvent: MutableState<Event?>,
-    updateLikeCount: suspend () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: ClusteredGoogleMapViewModel = viewModel()
 ) {
@@ -40,7 +39,7 @@ fun ClusteredGoogleMap(
             onDismissRequest = viewModel::closeDialog
         ) {
             coroutineScope.launch {
-                updateLikeCount()
+                selectedEvent.value?.updateLikeCount()
                 sheetState.expand()
             }
         }
@@ -58,7 +57,7 @@ fun ClusteredGoogleMap(
                 expandBottomSheet = {
                     coroutineScope.launch {
                         sheetState.expand()
-                        updateLikeCount()
+                        selectedEvent.value?.updateLikeCount()
                     }
                 },
                 onClusterClickListener = {

@@ -10,7 +10,7 @@
 
     <!--events screen-->
     <string name="clear_filters">WYCZYŚĆ FILTRY</string>
-    <string name="empty">Jak tu pusto…</string>
+    <string name="loading_events">Ładuję wydarzenia…</string>
     <string name="no_events">Brak wydarzeń z wybranymi tagami</string>
     <string name="log_in_to_like_event">Zaloguj się, aby móc polubić wydarzenie</string>
 
