@@ -10,6 +10,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.wawapp.R
@@ -36,7 +37,7 @@ fun BottomNavBar(navController: NavController) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
-    BottomNavigation(backgroundColor = MaterialTheme.colors.background) {
+    BottomNavigation(backgroundColor = MaterialTheme.colors.background, elevation = 8.dp) {
         bottomNavBarItems.forEach {
             BottomNavigationItem(
                 icon = { Icon(imageVector = it.icon, contentDescription = null) },
