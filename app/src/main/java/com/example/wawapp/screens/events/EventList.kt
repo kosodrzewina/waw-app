@@ -2,6 +2,7 @@ package com.example.wawapp.screens.events
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.ScaffoldState
@@ -28,6 +29,7 @@ import kotlinx.coroutines.launch
 fun EventList(
     events: List<Event>,
     scaffoldState: ScaffoldState,
+    lazyListState: LazyListState,
     navController: NavController,
     modifier: Modifier = Modifier,
     viewModel: EventListViewModel = viewModel(
@@ -75,6 +77,7 @@ fun EventList(
             }
         } else {
             LazyColumn(
+                state = lazyListState,
                 contentPadding = PaddingValues(12.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp),
                 modifier = modifier
