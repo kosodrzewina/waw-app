@@ -4,6 +4,7 @@ import androidx.compose.material.AlertDialog
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import com.example.wawapp.R
 
@@ -19,12 +20,18 @@ fun LogOutAlertDialog(
         text = { Text(text = stringResource(id = R.string.logging_out_ask)) },
         confirmButton = {
             TextButton(onClick = onConfirmClick) {
-                Text(text = stringResource(id = R.string.ok))
+                Text(
+                    text = stringResource(id = R.string.ok),
+                    color = colorResource(id = R.color.accent_color)
+                )
             }
         },
         dismissButton = {
             TextButton(onClick = onDismissClick) {
-                Text(text = stringResource(id = R.string.cancel))
+                Text(
+                    text = stringResource(id = R.string.cancel),
+                    color = colorResource(id = R.color.accent_color)
+                )
             }
         }
     )
