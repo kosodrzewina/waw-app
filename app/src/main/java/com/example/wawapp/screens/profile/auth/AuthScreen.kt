@@ -37,9 +37,7 @@ fun AuthScreen(navController: NavController, viewModel: AuthScreenViewModel = vi
 
     Scaffold(scaffoldState = scaffoldState) {
         if (Auth.token != null) {
-            Auth.email?.let { email ->
-                ProfileScreen(email = email, navController = navController)
-            }
+            ProfileScreen(navController = navController)
         } else {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,

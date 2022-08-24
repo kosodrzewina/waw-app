@@ -36,7 +36,11 @@ fun EventListItem(
 ) {
     val coroutineScope = rememberCoroutineScope()
 
-    Card(shape = RoundedCornerShape(16.dp), elevation = 8.dp, onClick = onClick) {
+    Card(
+        shape = RoundedCornerShape(16.dp),
+        elevation = 8.dp,
+        onClick = onClick,
+    ) {
         Row(modifier = Modifier.fillMaxWidth()) {
             Card(shape = RoundedCornerShape(16.dp), modifier = Modifier.padding(16.dp)) {
                 Image(

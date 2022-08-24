@@ -4,7 +4,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavHostController
@@ -13,10 +15,14 @@ import com.example.wawapp.events.EventManager
 import com.example.wawapp.events.EventType
 import com.example.wawapp.navigation.BottomNavBar
 import com.example.wawapp.navigation.NavGraph
+import com.example.wawapp.ui.theme.WawAppTheme
+import com.google.accompanist.systemuicontroller.SystemUiController
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     private lateinit var navHostController: NavHostController
+    private lateinit var systemUiController: SystemUiController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,15 +34,25 @@ class MainActivity : ComponentActivity() {
         setContent {
             navHostController = rememberNavController()
 
-            Scaffold(
-                bottomBar = {
-                    BottomNavBar(navController = navHostController)
+            WawAppTheme {
+                val backgroundColor = MaterialTheme.colors.background
+
+                systemUiController = rememberSystemUiController()
+
+                SideEffect {
+                    systemUiController.setSystemBarsColor(color = backgroundColor)
                 }
-            ) {
-                NavGraph(
-                    navController = navHostController,
-                    modifier = Modifier.padding(it)
-                )
+
+                Scaffold(
+                    bottomBar = {
+                        BottomNavBar(navController = navHostController)
+                    }
+                ) {
+                    NavGraph(
+                        navController = navHostController,
+                        modifier = Modifier.padding(it)
+                    )
+                }
             }
         }
     }

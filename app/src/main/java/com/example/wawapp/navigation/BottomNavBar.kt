@@ -1,9 +1,6 @@
 package com.example.wawapp.navigation
 
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.LocalActivity
@@ -12,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.wawapp.R
@@ -38,14 +36,14 @@ fun BottomNavBar(navController: NavController) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
-    BottomNavigation {
+    BottomNavigation(backgroundColor = MaterialTheme.colors.background) {
         bottomNavBarItems.forEach {
             BottomNavigationItem(
                 icon = { Icon(imageVector = it.icon, contentDescription = null) },
                 label = { Text(text = it.title) },
                 selected = currentRoute == it.navRoute,
-                selectedContentColor = Color.White,
-                unselectedContentColor = Color.White.copy(0.4f),
+                selectedContentColor = colorResource(id = R.color.accent_color),
+                unselectedContentColor = Color.Gray.copy(0.4f),
                 onClick = {
                     navController.navigate(it.navRoute)
                 }

@@ -6,8 +6,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.wawapp.EventsScreenViewModelFactory
@@ -26,12 +28,20 @@ fun EventsScreen(
         scaffoldState = scaffoldState,
         topBar = {
             TopAppBar(
-                title = { Text(text = stringResource(id = R.string.events)) },
+                elevation = 0.dp,
+                backgroundColor = MaterialTheme.colors.background,
+                title = {
+                    Text(
+                        text = stringResource(id = R.string.events),
+                        color = colorResource(id = R.color.accent_color),
+                        fontSize = 24.sp
+                    )
+                },
                 actions = {
                     TextButton(onClick = { viewModel.clearSelectedTypes() }) {
                         Text(
                             text = stringResource(id = R.string.clear_filters),
-                            color = Color.White
+                            color = colorResource(id = R.color.accent_color)
                         )
                     }
                 }

@@ -30,6 +30,6 @@ class MapScreenViewModel : ViewModel() {
             }
         }
 
-        return Color.White
+        return Color.Gray
     }
 }

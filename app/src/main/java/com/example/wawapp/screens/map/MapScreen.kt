@@ -38,6 +38,7 @@ fun MapScreen(viewModel: MapScreenViewModel = viewModel()) {
         sheetPeekHeight = (-100).dp,
         floatingActionButton = {
             Button(
+                colors = ButtonDefaults.buttonColors(backgroundColor = Color.White),
                 shape = CircleShape,
                 modifier = Modifier.size(45.dp),
                 onClick = {
