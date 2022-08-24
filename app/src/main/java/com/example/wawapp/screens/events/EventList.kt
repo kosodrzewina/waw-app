@@ -10,6 +10,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -19,6 +20,7 @@ import com.example.wawapp.R
 import com.example.wawapp.events.Event
 import com.example.wawapp.events.EventStore
 import com.google.accompanist.swiperefresh.SwipeRefresh
+import com.google.accompanist.swiperefresh.SwipeRefreshIndicator
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import kotlinx.coroutines.launch
 
@@ -48,6 +50,15 @@ fun EventList(
 
     SwipeRefresh(
         state = rememberSwipeRefreshState(isRefreshing),
+        indicator = { state, trigger ->
+            SwipeRefreshIndicator(
+                state = state,
+                refreshTriggerDistance = trigger,
+                contentColor = colorResource(
+                    id = R.color.accent_color
+                )
+            )
+        },
         onRefresh = { viewModel.refresh() }
     ) {
         if (EventStore.events.isEmpty()) {
@@ -56,7 +67,7 @@ fun EventList(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.fillMaxSize()
             ) {
-                CircularProgressIndicator()
+                CircularProgressIndicator(color = colorResource(id = R.color.accent_color))
                 Text(
                     text = stringResource(id = R.string.loading_events),
                     modifier = Modifier.padding(16.dp)

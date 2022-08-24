@@ -87,7 +87,7 @@ fun ProfileScreen(navController: NavController, viewModel: ProfileScreenViewMode
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    CircularProgressIndicator()
+                    CircularProgressIndicator(color = colorResource(id = R.color.accent_color))
                     Text(
                         text = stringResource(id = R.string.loading_your_profile),
                         modifier = Modifier.padding(16.dp)
