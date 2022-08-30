@@ -22,7 +22,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.runBlocking
 import java.io.IOException
 import java.time.OffsetDateTime
 
@@ -50,11 +49,11 @@ object Auth {
     var expirationDate: OffsetDateTime? = null
         private set
 
-    fun register(registerDto: RegisterDto): Boolean {
+    suspend fun register(registerDto: RegisterDto): Boolean {
         val registerDtoSerialized = gson.toJson(registerDto).toString()
         var isSuccess = false
 
-        runBlocking {
+        coroutineScope {
             val result = Fuel.post(REGISTER_URL)
                 .jsonBody(registerDtoSerialized)
                 .awaitStringResponseResult()
