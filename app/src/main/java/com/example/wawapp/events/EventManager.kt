@@ -110,6 +110,7 @@ object EventManager {
             description = it.description,
             url = it.link,
             guid = it.guid,
+            isCurrent = it.isCurrent,
             address = it.address,
             imageLink = it.image,
             location = it.location?.let { locationDto ->

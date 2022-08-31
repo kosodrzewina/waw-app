@@ -9,6 +9,7 @@ class Event(
     val description: String,
     val url: String,
     val guid: String,
+    val isCurrent: Boolean,
     val address: String,
     val imageLink: String,
     val location: LatLng?,

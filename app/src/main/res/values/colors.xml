@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="accent_color">#F2296A</color>
+    <color name="outdated_event">#DDDDDD</color>
 </resources>

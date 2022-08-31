@@ -16,18 +16,28 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
+import com.example.wawapp.R
 import com.example.wawapp.events.Event
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun FavouriteEventListItem(event: Event, onUnlikeClick: () -> Unit, onClick: () -> Unit) {
-    Card(shape = RoundedCornerShape(16.dp), elevation = 8.dp, onClick = onClick) {
+    Card(
+        shape = RoundedCornerShape(16.dp),
+        elevation = 8.dp,
+        onClick = onClick,
+        backgroundColor = if (event.isCurrent)
+            Color.White
+        else
+            colorResource(id = R.color.outdated_event)
+    ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
