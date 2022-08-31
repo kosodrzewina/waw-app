@@ -6,9 +6,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.derivedStateOf
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
@@ -28,11 +25,6 @@ fun EventsScreen(
 ) {
     val scaffoldState = rememberScaffoldState()
     val lazyListState = rememberLazyListState()
-    val firstItemVisible by remember {
-        derivedStateOf {
-            lazyListState.firstVisibleItemIndex == 0
-        }
-    }
 
     Scaffold(
         scaffoldState = scaffoldState,
@@ -60,7 +52,6 @@ fun EventsScreen(
     ) {
         Column {
             EventTypesRow(
-                elevation = if (firstItemVisible) 0.dp else 8.dp,
                 selectedTypes = viewModel.selectedTypes,
                 onItemClick = viewModel::applyTypeStateChange
             )
