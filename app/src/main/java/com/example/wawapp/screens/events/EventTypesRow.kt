@@ -25,10 +25,9 @@ fun EventTypesRow(
     elevation: Dp,
     onItemClick: (EventType) -> Unit
 ) {
-    Card(
-        shape = RoundedCornerShape(0.dp),
+    Surface(
         elevation = elevation,
-        backgroundColor = MaterialTheme.colors.background
+        color = MaterialTheme.colors.background
     ) {
         LazyRow(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
