@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import com.example.wawapp.Auth
 import com.example.wawapp.events.Event
-import com.example.wawapp.events.EventManager
+import com.example.wawapp.events.EventHttpClient
 import com.example.wawapp.navigation.Screen
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
@@ -31,7 +31,7 @@ class FavouriteEventListViewModel(private val navController: NavController) : Vi
     suspend fun unlikeEvent() {
         Auth.token?.let { token ->
             selectedEvent?.guid?.let { guid ->
-                EventManager.likeEvent(token, guid, false)
+                EventHttpClient.likeEvent(token, guid, false)
             }
         }
     }

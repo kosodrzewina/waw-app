@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.example.wawapp.Auth
-import com.example.wawapp.events.EventManager
+import com.example.wawapp.events.EventHttpClient
 
 class ProfileScreenViewModel : ViewModel() {
     var isLogOutDialog by mutableStateOf(false)
@@ -24,7 +24,7 @@ class ProfileScreenViewModel : ViewModel() {
     suspend fun fetchFavouriteEvents() {
         isFetchingFavourites = true
         Auth.token?.let {
-            EventManager.fetchFavourites(it)
+            EventHttpClient.fetchFavourites(it)
         }
         isFetchingFavourites = false
     }

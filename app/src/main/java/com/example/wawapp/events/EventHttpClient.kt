@@ -16,7 +16,7 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.withContext
 import java.net.URL
 
-object EventManager {
+object EventHttpClient {
     private const val BASE_EVENTS_URL = "$BASE_API_URL/events"
     private const val BY_TYPE_URL = "$BASE_EVENTS_URL/by-types?eventTypes="
     private const val FAVOURITES_URL = "$BASE_EVENTS_URL/favourites"

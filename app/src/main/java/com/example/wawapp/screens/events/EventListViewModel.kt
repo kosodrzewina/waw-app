@@ -11,7 +11,7 @@ import androidx.navigation.NavController
 import com.example.wawapp.Auth
 import com.example.wawapp.ErrorHolder
 import com.example.wawapp.R
-import com.example.wawapp.events.EventManager
+import com.example.wawapp.events.EventHttpClient
 import com.example.wawapp.events.EventStore
 import com.example.wawapp.events.EventType
 import com.example.wawapp.navigation.Screen
@@ -44,7 +44,7 @@ class EventListViewModel(
         }
 
         Auth.token?.let { token ->
-            EventManager.likeEvent(
+            EventHttpClient.likeEvent(
                 token,
                 guid,
                 !EventStore.favouriteEvents.any { it.guid == guid }
@@ -67,7 +67,7 @@ class EventListViewModel(
 
             withContext(CoroutineScope(IO).coroutineContext) {
                 try {
-                    EventManager.fetchEvents(*EventType.values())
+                    EventHttpClient.fetchEvents(*EventType.values())
                 } catch (e: FileNotFoundException) {
                     e.printStackTrace()
                     errorHolder.apply {

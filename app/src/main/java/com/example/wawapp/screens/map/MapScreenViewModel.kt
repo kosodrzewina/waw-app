@@ -5,7 +5,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 import com.example.wawapp.Auth
 import com.example.wawapp.events.Event
-import com.example.wawapp.events.EventManager
+import com.example.wawapp.events.EventHttpClient
 import com.example.wawapp.events.EventStore
 
 class MapScreenViewModel : ViewModel() {
@@ -16,7 +16,7 @@ class MapScreenViewModel : ViewModel() {
             val isLiked = !EventStore.favouriteEvents.any { it.guid == guid }
 
             Auth.token?.let { token ->
-                EventManager.likeEvent(token, guid, isLiked)
+                EventHttpClient.likeEvent(token, guid, isLiked)
             }
         }
     }

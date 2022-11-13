@@ -23,6 +23,6 @@ class Event(
     override fun getSnippet(): String = address
 
     suspend fun updateLikeCount() {
-        likeCount.value = EventManager.getEventLikeCount(guid)
+        likeCount.value = EventHttpClient.getEventLikeCount(guid)
     }
 }

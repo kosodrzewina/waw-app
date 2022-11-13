@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.wawapp.events.EventManager
+import com.example.wawapp.events.EventHttpClient
 import com.example.wawapp.events.EventType
 import com.example.wawapp.navigation.BottomNavBar
 import com.example.wawapp.navigation.NavGraph
@@ -28,7 +28,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         lifecycleScope.launch {
             Auth.checkIfUserIsLoggedIn(this@MainActivity)
-            EventManager.fetchEvents(*EventType.values())
+            EventHttpClient.fetchEvents(*EventType.values())
         }
 
         setContent {
