@@ -5,6 +5,7 @@ data class EventDto(
     val description: String,
     val link: String,
     val guid: String,
+    val likeCount: Int,
     val isCurrent: Boolean,
     val address: String,
     val image: String,

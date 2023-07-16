@@ -119,7 +119,7 @@ object EventHttpClient {
                     locationDto.longitude
                 )
             },
-            likeCount = mutableStateOf(getEventLikeCount(it.guid)),
+            likeCount = mutableStateOf(it.likeCount),
             types = it.types.map { type -> stringToEventType(type) }
         )
     }
